@@ -1,588 +1,10 @@
-import React, { use } from "react";
+import React from "react";
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from 'react-router-dom';
 import "./Game.css";
 import Pokemon from "./Pokemon.jsx";
 import HeadTails from "./HeadTails.jsx";
-
-export const cardDeck = [
-  {
-    src: "/assets/Arbo.png",
-    figure: 1,
-    name: "ekans",
-    pair: 1,
-    id: 23,
-    url: "https://pokedex.mimo.dev/api/pokemon/23/"
-  },
-  {
-    src: "/assets/Arbo.png",
-    figure: 1,
-    name: "ekans",
-    pair: 2,
-    id: 23,
-    url: "https://pokedex.mimo.dev/api/pokemon/23/"
-  },
-  {
-    src: "/assets/Aria.png",
-    figure: 2,
-    name: "clefairy",
-    pair: 1,
-    id: 35,
-    url: "https://pokedex.mimo.dev/api/pokemon/35/"
-  },
-  {
-    src: "/assets/Aria.png",
-    figure: 2,
-    name: "clefairy",
-    pair: 2,
-    id: 35,
-    url: "https://pokedex.mimo.dev/api/pokemon/35/"
-  },
-  {
-    src: "/assets/Ariala.png",
-    figure: 3,
-    name: "clefable",
-    pair: 1,
-    id: 36,
-    url: "https://pokedex.mimo.dev/api/pokemon/36/"
-  },
-  {
-    src: "/assets/Ariala.png",
-    figure: 3,
-    name: "clefable",
-    pair: 2,
-    id: 36,
-    url: "https://pokedex.mimo.dev/api/pokemon/36/"
-  },
-  {
-    src: "/assets/Blastoise.png",
-    figure: 4,
-    name: "blastoise",
-    pair: 1,
-    id: 9,
-    url: "https://pokedex.mimo.dev/api/pokemon/9/"
-  },
-  {
-    src: "/assets/Blastoise.png",
-    figure: 4,
-    name: "blastoise",
-    pair: 2,
-    id: 9,
-    url: "https://pokedex.mimo.dev/api/pokemon/9/"
-  },
-  {
-    src: "/assets/Bulbasaur.png",
-    figure: 5,
-    name: "bulbasaur",
-    pair: 1,
-    id: 1,
-    url: "https://pokedex.mimo.dev/api/pokemon/1/"
-  },
-  {
-    src: "/assets/Bulbasaur.png",
-    figure: 5,
-    name: "bulbasaur",
-    pair: 2,
-    id: 1,
-    url: "https://pokedex.mimo.dev/api/pokemon/1/"
-  },
-  {
-    src: "/assets/Butterfree.png",
-    figure: 6,
-    name: "butterfree",
-    pair: 1,
-    id: 12,
-    url: "https://pokedex.mimo.dev/api/pokemon/12/"
-  },
-  {
-    src: "/assets/Butterfree.png",
-    figure: 6,
-    name: "butterfree",
-    pair: 2,
-    id: 12,
-    url: "https://pokedex.mimo.dev/api/pokemon/12/"
-  },
-  {
-    src: "/assets/Caterpie.png",
-    figure: 7,
-    name: "caterpie",
-    pair: 1,
-    id: 10,
-    url: "https://pokedex.mimo.dev/api/pokemon/10/"
-  },
-  {
-    src: "/assets/Caterpie.png",
-    figure: 7,
-    name: "caterpie",
-    pair: 2,
-    id: 10,
-    url: "https://pokedex.mimo.dev/api/pokemon/10/"
-  },
-  {
-    src: "/assets/Charmander.png",
-    figure: 8,
-    name: "charmander",
-    pair: 1,
-    id: 4,
-    url: "https://pokedex.mimo.dev/api/pokemon/4/"
-  },
-  {
-    src: "/assets/Charmander.png",
-    figure: 8,
-    name: "charmander",
-    pair: 2,
-    id: 4,
-    url: "https://pokedex.mimo.dev/api/pokemon/4/"
-  },
-  {
-    src: "/assets/Dragonite.png",
-    figure: 9,
-    name: "dragonite",
-    pair: 1,
-    id: 149,
-    url: "https://pokedex.mimo.dev/api/pokemon/149/"
-  },
-  {
-    src: "/assets/Dragonite.png",
-    figure: 9,
-    name: "dragonite",
-    pair: 2,
-    id: 149,
-    url: "https://pokedex.mimo.dev/api/pokemon/149/"
-  },
-  {
-    src: "/assets/Flareon.png",
-    figure: 10,
-    name: "flareon",
-    pair: 1,
-    id: 136,
-    url: "https://pokedex.mimo.dev/api/pokemon/136/"
-  },
-  {
-    src: "/assets/Flareon.png",
-    figure: 10,
-    name: "flareon",
-    pair: 2,
-    id: 136,
-    url: "https://pokedex.mimo.dev/api/pokemon/136/"
-  },
-  {
-    src: "/assets/Geodude.png",
-    figure: 11,
-    name: "geodude",
-    pair: 1,
-    id: 74,
-    url: "https://pokedex.mimo.dev/api/pokemon/74/"
-  },
-  {
-    src: "/assets/Geodude.png",
-    figure: 11,
-    name: "geodude",
-    pair: 2,
-    id: 74,
-    url: "https://pokedex.mimo.dev/api/pokemon/74/"
-  },
-  {
-    src: "/assets/Grimer.png",
-    figure: 12,
-    name: "grimer",
-    pair: 1,
-    id: 88,
-    url: "https://pokedex.mimo.dev/api/pokemon/88/"
-  },
-  {
-    src: "/assets/Grimer.png",
-    figure: 12,
-    name: "grimer",
-    pair: 2,
-    id: 88,
-    url: "https://pokedex.mimo.dev/api/pokemon/88/"
-  },
-  {
-    src: "/assets/Haunter.png",
-    figure: 13,
-    name: "haunter",
-    pair: 1,
-    id: 93,
-    url: "https://pokedex.mimo.dev/api/pokemon/93/"
-  },
-  {
-    src: "/assets/Haunter.png",
-    figure: 13,
-    name: "haunter",
-    pair: 2,
-    id: 93,
-    url: "https://pokedex.mimo.dev/api/pokemon/93/"
-  },
-  {
-    src: "/assets/Ivysaur.png",
-    figure: 14,
-    name: "ivysaur",
-    pair: 1,
-    id: 2,
-    url: "https://pokedex.mimo.dev/api/pokemon/2/"
-  },
-  {
-    src: "/assets/Ivysaur.png",
-    figure: 14,
-    name: "ivysaur",
-    pair: 2,
-    id: 2,
-    url: "https://pokedex.mimo.dev/api/pokemon/2/"
-  },
-  {
-    src: "/assets/Jigglypuff.png",
-    figure: 15,
-    name: "jigglypuff",
-    pair: 1,
-    id: 39,
-    url: "https://pokedex.mimo.dev/api/pokemon/39/"
-  },
-  {
-    src: "/assets/Jigglypuff.png",
-    figure: 15,
-    name: "jigglypuff",
-    pair: 2,
-    id: 39,
-    url: "https://pokedex.mimo.dev/api/pokemon/39/"
-  },
-  {
-    src: "/assets/Kang.png",
-    figure: 16,
-    name: "kangaskhan",
-    pair: 1,
-    id: 115,
-    url: "https://pokedex.mimo.dev/api/pokemon/115/"
-  },
-  {
-    src: "/assets/Kang.png",
-    figure: 16,
-    name: "kangaskhan",
-    pair: 2,
-    id: 115,
-    url: "https://pokedex.mimo.dev/api/pokemon/115/"
-  },
-  {
-    src: "/assets/Karate.png",
-    figure: 17,
-    name: "machop",
-    pair: 1,
-    id: 66,
-    url: "https://pokedex.mimo.dev/api/pokemon/66/"
-  },
-  {
-    src: "/assets/Karate.png",
-    figure: 17,
-    name: "machop",
-    pair: 2,
-    id: 66,
-    url: "https://pokedex.mimo.dev/api/pokemon/66/"
-  },
-  {
-    src: "/assets/Meowth.png",
-    figure: 18,
-    name: "meowth",
-    pair: 1,
-    id: 52,
-    url: "https://pokedex.mimo.dev/api/pokemon/52/"
-  },
-  {
-    src: "/assets/Meowth.png",
-    figure: 18,
-    name: "meowth",
-    pair: 2,
-    id: 52,
-    url: "https://pokedex.mimo.dev/api/pokemon/52/"
-  },
-  {
-    src: "/assets/Neptune.png",
-    figure: 19,
-    name: "seaking",
-    pair: 1,
-    id: 119,
-    url: "https://pokedex.mimo.dev/api/pokemon/119/"
-  },
-  {
-    src: "/assets/Neptune.png",
-    figure: 19,
-    name: "seaking",
-    pair: 2,
-    id: 119,
-    url: "https://pokedex.mimo.dev/api/pokemon/119/"
-  },
-  {
-    src: "/assets/Nidoran.png",
-    figure: 20,
-    name: "nidoran♂",
-    pair: 1,
-    id: 32,
-    url: "https://pokedex.mimo.dev/api/pokemon/32/"
-  },
-  {
-    src: "/assets/Nidoran.png",
-    figure: 20,
-    name: "nidoran♂",
-    pair: 2,
-    id: 32,
-    url: "https://pokedex.mimo.dev/api/pokemon/32/"
-  },
-  {
-    src: "/assets/Nidorina.png",
-    figure: 21,
-    name: "nidorina",
-    pair: 1,
-    id: 30,
-    url: "https://pokedex.mimo.dev/api/pokemon/30/"
-  },
-  {
-    src: "/assets/Nidorina.png",
-    figure: 21,
-    name: "nidorina",
-    pair: 2,
-    id: 30,
-    url: "https://pokedex.mimo.dev/api/pokemon/30/"
-  },
-  {
-    src: "/assets/Orphon.png",
-    figure: 22,
-    name: "cubone",
-    pair: 1,
-    id: 104,
-    url: "https://pokedex.mimo.dev/api/pokemon/104/"
-  },
-  {
-    src: "/assets/Orphon.png",
-    figure: 22,
-    name: "cubone",
-    pair: 2,
-    id: 104,
-    url: "https://pokedex.mimo.dev/api/pokemon/104/"
-  },
-  {
-    src: "/assets/Persian.png",
-    figure: 23,
-    name: "persian",
-    pair: 1,
-    id: 53,
-    url: "https://pokedex.mimo.dev/api/pokemon/53/"
-  },
-  {
-    src: "/assets/Persian.png",
-    figure: 23,
-    name: "persian",
-    pair: 2,
-    id: 53,
-    url: "https://pokedex.mimo.dev/api/pokemon/53/"
-  },
-  {
-    src: "/assets/Pidgotto.png",
-    figure: 24,
-    name: "pidgeotto",
-    pair: 1,
-    id: 17,
-    url: "https://pokedex.mimo.dev/api/pokemon/17/"
-  },
-  {
-    src: "/assets/Pidgotto.png",
-    figure: 24,
-    name: "pidgeotto",
-    pair: 2,
-    id: 17,
-    url: "https://pokedex.mimo.dev/api/pokemon/17/"
-  },
-  {
-    src: "/assets/Pikachu.png",
-    figure: 25,
-    name: "pikachu",
-    pair: 1,
-    id: 25,
-    url: "https://pokedex.mimo.dev/api/pokemon/25/"
-  },
-  {
-    src: "/assets/Pikachu.png",
-    figure: 25,
-    name: "pikachu",
-    pair: 2,
-    id: 25,
-    url: "https://pokedex.mimo.dev/api/pokemon/25/"
-  },
-  {
-    src: "/assets/Psyduck.png",
-    figure: 26,
-    name: "psyduck",
-    pair: 1,
-    id: 54,
-    url: "https://pokedex.mimo.dev/api/pokemon/54/"
-  },
-  {
-    src: "/assets/Psyduck.png",
-    figure: 26,
-    name: "psyduck",
-    pair: 2,
-    id: 54,
-    url: "https://pokedex.mimo.dev/api/pokemon/54/"
-  },
-  {
-    src: "/assets/Raichu.png",
-    figure: 27,
-    name: "raichu",
-    pair: 1,
-    id: 26,
-    url: "https://pokedex.mimo.dev/api/pokemon/26/"
-  },
-  {
-    src: "/assets/Raichu.png",
-    figure: 27,
-    name: "raichu",
-    pair: 2,
-    id: 26,
-    url: "https://pokedex.mimo.dev/api/pokemon/26/"
-  },
-  {
-    src: "/assets/Raticate.png",
-    figure: 28,
-    name: "raticate",
-    pair: 1,
-    id: 20,
-    url: "https://pokedex.mimo.dev/api/pokemon/20/"
-  },
-  {
-    src: "/assets/Raticate.png",
-    figure: 28,
-    name: "raticate",
-    pair: 2,
-    id: 20,
-    url: "https://pokedex.mimo.dev/api/pokemon/20/"
-  },
-  {
-    src: "/assets/Rattata.png",
-    figure: 29,
-    name: "rattata",
-    pair: 1,
-    id: 19,
-    url: "https://pokedex.mimo.dev/api/pokemon/19/"
-  },
-  {
-    src: "/assets/Rattata.png",
-    figure: 29,
-    name: "rattata",
-    pair: 2,
-    id: 19,
-    url: "https://pokedex.mimo.dev/api/pokemon/19/"
-  },
-  {
-    src: "/assets/Sandshrew.png",
-    figure: 30,
-    name: "sandshrew",
-    pair: 1,
-    id: 27,
-    url: "https://pokedex.mimo.dev/api/pokemon/27/"
-  },
-  {
-    src: "/assets/Sandshrew.png",
-    figure: 30,
-    name: "sandshrew",
-    pair: 2,
-    id: 27,
-    url: "https://pokedex.mimo.dev/api/pokemon/27/"
-  },
-  {
-    src: "/assets/Slowbro.png",
-    figure: 31,
-    name: "slowbro",
-    pair: 1,
-    id: 80,
-    url: "https://pokedex.mimo.dev/api/pokemon/80/"
-  },
-  {
-    src: "/assets/Slowbro.png",
-    figure: 31,
-    name: "slowbro",
-    pair: 2,
-    id: 80,
-    url: "https://pokedex.mimo.dev/api/pokemon/80/"
-  },
-  {
-    src: "/assets/Slowmo.png",
-    figure: 32,
-    name: "slowpoke",
-    pair: 1,
-    id: 79,
-    url: "https://pokedex.mimo.dev/api/pokemon/79/"
-  },
-  {
-    src: "/assets/Slowmo.png",
-    figure: 32,
-    name: "slowpoke",
-    pair: 2,
-    id: 79,
-    url: "https://pokedex.mimo.dev/api/pokemon/79/"
-  },
-  {
-    src: "/assets/Squirtle.png",
-    figure: 33,
-    name: "squirtle",
-    pair: 1,
-    id: 7,
-    url: "https://pokedex.mimo.dev/api/pokemon/7/"
-  },
-  {
-    src: "/assets/Squirtle.png",
-    figure: 33,
-    name: "squirtle",
-    pair: 2,
-    id: 7,
-    url: "https://pokedex.mimo.dev/api/pokemon/7/"
-  },
-  {
-    src: "/assets/Staryu.png",
-    figure: 34,
-    name: "staryu",
-    pair: 1,
-    id: 120,
-    url: "https://pokedex.mimo.dev/api/pokemon/120/"
-  },
-  {
-    src: "/assets/Staryu.png",
-    figure: 34,
-    name: "staryu",
-    pair: 2,
-    id: 120,
-    url: "https://pokedex.mimo.dev/api/pokemon/120/"
-  },
-  {
-    src: "/assets/Voltorb.png",
-    figure: 35,
-    name: "voltorb",
-    pair: 1,
-    id: 100,
-    url: "https://pokedex.mimo.dev/api/pokemon/100/"
-  },
-  {
-    src: "/assets/Voltorb.png",
-    figure: 35,
-    name: "voltorb",
-    pair: 2,
-    id: 100,
-    url: "https://pokedex.mimo.dev/api/pokemon/100/"
-  },
-  {
-    src: "/assets/Wigglytuff.png",
-    figure: 36,
-    name: "wigglytuff",
-    pair: 1,
-    id: 40,
-    url: "https://pokedex.mimo.dev/api/pokemon/40/"
-  },
-  {
-    src: "/assets/Wigglytuff.png",
-    figure: 36,
-    name: "wigglytuff",
-    pair: 2,
-    id: 40,
-    url: "https://pokedex.mimo.dev/api/pokemon/40/"
-  }
- ];
+import { cardDeck } from './cardDeck';
 
 const Game = ({ setIsPlaying, theme }) => {
  const navigate = useNavigate();
@@ -619,6 +41,7 @@ const Game = ({ setIsPlaying, theme }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
   const remainingCards = removed.filter(r => !r).length;
+  const [score, setScore] = useState({ player1: 0, player2: 0 });
 
   const randomAnimation = () => {
     const animations = ["/assets/charmander.gif", "/assets/pikapika.gif", "/assets/squirtle.gif", "/assets/squirtle2.gif", "/assets/bulbasaur.gif"];
@@ -649,8 +72,10 @@ const pickCard = (index) => {
         setTimeout(() => {
           if (turn === 1) {
             setFound1(prev => [...prev, [cards[firstCard], cards[index]]]);
+            setScore(prev => ({ ...prev, player1: prev.player1 + 1 }));
           } else {
             setFound2(prev => [...prev, [cards[firstCard], cards[index]]]);
+            setScore(prev => ({ ...prev, player2: prev.player2 + 1 }));
           }
           // Quitar del tablero
           setRemoved(prev => prev.map((r, i) => (i === firstCard || i === index) ? true : r));
@@ -736,6 +161,7 @@ const cpuTurn = () => {
         }, 700);
         setTimeout(() => {
           setFound2(prev => [...prev, [cards[firstIdx], cards[secondIdx]]]);
+          setScore(prev => ({ ...prev, player2: prev.player2 + 1 }));
           setRemoved(prev => prev.map((r, i) => (i === firstIdx || i === secondIdx) ? true : r));
           setCpuMemoryCards(prev => prev.filter(item => item.index !== firstIdx && item.index !== secondIdx));
           setFirstCard(null);
@@ -804,7 +230,8 @@ const checkWinner = () => {
 
 useEffect(() => {
   const shuffled = shuffleCards(cards);
-    setCards(shuffled);
+  setCards(shuffled);
+  match.volume = 0.5;
 }, []);
 
 useEffect(() => {
@@ -838,6 +265,10 @@ useEffect(() => {
   window.addEventListener("keydown", handleKeyDown);
   return () => window.removeEventListener("keydown", handleKeyDown);
 }, []);
+
+useEffect(() => {
+  randomAnimation();
+}, [turn]);
 
 return (
   <>
@@ -875,7 +306,11 @@ return (
       </div>
       <div className="game-area">
       <div className="turn-indicator left">
-        {turn === 1 ? `Turn: ${player1Mode}` : <img src={pokemonAnimation} alt="charmander!" width="100px" />}
+      <div style={{ position:"absolute" }}>
+        <h3 className={`score-player2`}>{score.player2}</h3>
+        <h3 className={`score-player1`}>{score.player1}</h3>
+      </div>
+        {turn === 1 ? `Turn: ${player1Mode}` : `Turn: ${player2Mode}`}
       </div>
       <div className={`game-board ${theme}`}>
         {cards.map((card, index) => (
@@ -902,7 +337,7 @@ return (
         ))}
       </div>
       <div className="turn-indicator right">
-        {turn === 2 ? `Turn: ${player2Mode}` : <img src={pokemonAnimation} alt="pikachu!" width="100px" />}
+        <img src={pokemonAnimation} alt="pokemon!" width="100px" />
       </div>
       </div>
       <div className="first-player-container">

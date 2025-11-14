@@ -1,12 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "./Pokemon.css";
+import { cardDeck } from './cardDeck';
 
 const Pokemon = ({ name, url, onClose, theme }) => {
  const [pokemon, setPokemon] = useState(null);
  const [loading, setLoading] = useState(true);
  const [error, setError] = useState(null);
- 
+ const [card, setCard] = useState(null);
+
  const fetchPokemon = async () => {
   try {
    const fetchData = await fetch(`https://corsproxy.io/?${encodeURIComponent(url)}`);
@@ -36,6 +38,11 @@ const Pokemon = ({ name, url, onClose, theme }) => {
 };
 
  useEffect(() => {
+  const cardPokemon = cardDeck.find((c) => c.url === url);
+  setCard(cardPokemon);
+ }, []);
+
+ useEffect(() => {
   if(name) {
     fetchPokemon();
   }
@@ -51,7 +58,7 @@ const Pokemon = ({ name, url, onClose, theme }) => {
           <img id="pokemon-sprite" src={pokemon.sprites.front_default} alt={pokemon.name} />
           <p className={`pokeText ${theme}`}>Height: {pokemon.height/10} m</p>
           <p className={`pokeText ${theme}`}>Weight: {pokemon.weight/10} kg</p>
-          <p className={`pokeText ${theme}`}>Abilities: {pokemon.abilities.map((ability) => capitalize(ability.ability.name)).join(", ")}</p>
+          <p className={`pokeText ${theme}`}>Abilities: {card.mov1[0]}, {card.mov2[0]}, {card.mov3[0]}, {card.mov4[0]}</p>
           <p className={`pokeText ${theme}`}>Types: {pokemon.types.map((type) => capitalize(type.type.name)).join(", ")}</p>
         </div>
       </div>

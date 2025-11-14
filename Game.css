@@ -158,7 +158,8 @@
 
 .first-player,
 .player2-player,
-.cpu-player {
+.cpu-player,
+.all-pokemon-container {
   scrollbar-width: thin;              /* Firefox */
   scrollbar-color: #eebb09 rgb(63, 94, 140);      /* Firefox */
 }
@@ -325,6 +326,24 @@
 .card-back {
   transform: rotateY(180deg);
   z-index: 1;
+}
+
+.score-player1,
+.score-player2 {
+  position: relative;
+  color: white;         
+  font-size: 9rem;  
+  -webkit-text-stroke: 1px rgb(33, 51, 99);       
+}
+
+.score-player1 {
+  top: 100px;
+  right: 120px;
+}
+
+.score-player2 {
+  bottom: 100px;
+  right: 120px;
 }
 
 /*themes*/

@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link, useNavigate, useLocation, createSearchParams } from 'react-router-dom';
 import "./App.css";
 import Game from './Game.jsx';
-import { cardDeck } from './Game.jsx';
+import GameBattle from './GameBattle.jsx';
+import { cardDeck } from './cardDeck';
 
 function NavigationMenu({ theme }) {
     return (
@@ -36,6 +37,8 @@ function Home({ setIsPlaying, theme }) {
   const [flipped, setFlipped] = useState(false);
   const [pokemonCardId, setPokemonCardId] = useState(null);
   const [anotherPokemon, setAnotherPokemon] = useState(false);
+  const [battleMode, setBattleMode] = useState(false);
+  const [modeFlag, setModeFlag] = useState(false);
 
 const handleStart = () => {
     setStart(true);
@@ -46,11 +49,27 @@ const handleStart = () => {
     search: createSearchParams({ start: 'true' }).toString()
   });
 };
+
+const handleBattleMode = (battleFlag) => {
+    setModeFlag(true);
+    if(battleFlag) {
+    setBattleMode(true);
+    navigate({
+    pathname: '/',
+    search: createSearchParams({ start: 'true', battle: 'true' }).toString()
+  });
+ }
+};
+
 const easyMode = () => {
     pikaPika.play();
     startSound2.play();
     setTimeout(() =>{
-      navigate('/game', { state: { mode: 'cpu', difficulty: 4 } });
+      if(battleMode) {
+        navigate('/gamebattle', { state: { mode: 'cpu', difficulty: 10, numberBattles: 4 } });
+      } else {
+        navigate('/game', { state: { mode: 'cpu', difficulty: 4 } });
+      }
     }, 1000);
 };
 
@@ -58,7 +77,11 @@ const normalMode = () => {
     pikaPika.play();
     startSound2.play();
     setTimeout(() =>{
+      if(battleMode) {
+        navigate('/gamebattle', { state: { mode: 'cpu', difficulty: 12, numberBattles: 6 } });
+      } else {      
       navigate('/game', { state: { mode: 'cpu', difficulty: 8 } });
+      }
     }, 1000);
 };
 
@@ -66,7 +89,11 @@ const hardMode = () => {
     pikaPika.play();
     setTimeout(() =>{
       metal.pause();
+      if(battleMode) {
+        navigate('/gamebattle', { state: { mode: 'cpu', difficulty: 14, numberBattles: 9 } });
+      } else {
       navigate('/game', { state: { mode: 'cpu', difficulty: 12 } });
+      }
     }, 1000);
 };
 
@@ -74,7 +101,11 @@ const twoPlayerMode = () => {
     pikaPika.play();
     startSound2.play();
     setTimeout(() =>{
+      if(battleMode) {
+        navigate('/gamebattle', { state: { mode: 'player2' } });
+      } else {
       navigate('/game', { state: { mode: 'player2' } });
+      }
     }, 1000);
 };
 
@@ -103,6 +134,10 @@ useEffect(() => {
     setStart(false);
     setCpuMode(false);
   }
+  if (!params.get('battle')) {
+    setBattleMode(false);
+    setModeFlag(false);
+  }
 }, [location.pathname, location.search]);
 
 return (
@@ -117,11 +152,21 @@ return (
       <p>Figuras de Combate</p>
       <br />
       {!start && <button onClick={handleStart} className={`${theme}`}>Start</button> }
-      {(start && !cpuMode) && (<div style={{ display: "flex", gap: "1rem" }}>
+      {(start && !modeFlag) && (<div style={{ display: "flex", gap: "1rem" }}>
+      <div className="tooltip-container">
+      <button onClick={() => handleBattleMode(false)} className={`${theme}`}>Classic Mode</button>
+      <span className={`${theme} tooltip-text left`}>Play Memory in Classic Mode, match Pokemon pairs and win points! Just like the board game!</span>
+      </div>
+      <div className="tooltip-container">
+      <button onClick={() => handleBattleMode(true)} className={`${theme}`}>Battle Mode!</button>
+      <span className={`${theme} tooltip-text right`}>Play in Battle Mode, it's a memory game but with a twist: Gameboy battles as we remember from back in the 90s!</span>
+      </div>
+      </div>)}      
+      {(start && modeFlag && !cpuMode && !battleMode) && (<div style={{ display: "flex", gap: "1rem" }}>
       <button onClick={() => setCpuMode(true)} className={`${theme}`}>Player vs CPU</button>
       <button onClick={twoPlayerMode} className={`${theme}`}>2 Players</button>
       </div>)}
-      {cpuMode && (<div style={{ display: "flex", gap: "1rem" }}>
+      {(cpuMode && !battleMode) && (<div style={{ display: "flex", gap: "1rem" }}>
       <button onClick={easyMode} className={`${theme}`}>Easy</button>
       <button onClick={normalMode} className={`${theme}`}>Normal</button>
       <button onClick={hardMode} onMouseMove={() => {
@@ -131,6 +176,26 @@ return (
         metal.pause();
         metal.currentTime = 0;
       }} id='hardButton'>Hard</button>
+      </div>)}
+      {battleMode && (<div style={{ display: "flex", gap: "1rem" }}>
+      <div className="tooltip-container">
+      <button onClick={easyMode} className={`${theme}`}>Easy</button>
+      <span className={`${theme} tooltip-text difficulty`}>The player who wins 4 battles first takes the cake!</span>
+      </div>
+      <div className="tooltip-container">
+      <button onClick={normalMode} className={`${theme}`}>Normal</button>
+      <span className={`${theme} tooltip-text difficulty`}>The player who wins 6 battles first is a true Pokemon trainer!</span>
+      </div>
+      <div className="tooltip-container">
+      <button onClick={hardMode} onMouseMove={() => {
+        metal.play(0);
+        metal.loop = true;
+      }} onMouseLeave={() => {
+        metal.pause();
+        metal.currentTime = 0;
+      }} id='hardButton'>Hard</button>
+      <span className={`${theme} tooltip-text difficulty`}>The player who wins 9 battles first is the Pokemon champion!</span>
+      </div>
       </div>)}
       <br />
       <img src="/assets/pikachuyellow.gif" alt="pikapika" width="20%" style={{ marginTop: "40px", position: "relative", left: "15px" }} onClick={() => {
@@ -412,6 +477,7 @@ useEffect(() => {
         <Route path="/" element={<Home setIsPlaying={setIsPlaying} theme={theme} />} />
         <Route path="/about" element={<About theme={theme} />} />
         <Route path="/game" element={<Game setIsPlaying={setIsPlaying} theme={theme} />} />
+        <Route path="/gamebattle" element={<GameBattle setIsPlaying={setIsPlaying} theme={theme} />} />
       </Routes>
     </BrowserRouter>
     </>
