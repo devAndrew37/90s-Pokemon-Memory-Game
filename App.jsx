@@ -146,7 +146,7 @@ return (
     <div id="home">
       <br />
       <br />
-      <img src="assets/pokegang.gif" alt="the gang" width="10%" />
+      <img src="assets/pokegang.gif" alt="the gang" id="gang-home" />
       <h1>Memoria</h1>
       <h2>Pokemon</h2>
       <p>Figuras de Combate</p>
@@ -198,11 +198,11 @@ return (
       </div>
       </div>)}
       <br />
-      <img src="assets/pikachuyellow.gif" alt="pikapika" width="20%" style={{ marginTop: "40px", position: "relative", left: "15px" }} onClick={() => {
+      <img src="assets/pikachuyellow.gif" alt="pikapika" width="20%" id="pikachu-home" onClick={() => {
         const randomPika = Math.random() < 0.5 ? pikaPika : pikachuStart;
         randomPika.play();
       }} />
-  <div style={{ marginLeft: "auto", marginRight: "40px", position: "relative", bottom: "500px", right: "350px" }}>
+  <div className="card-home-wrapper">
     {randomCard && (
       <div
         className={`card${flipped ? " flipped" : ""}`}
@@ -432,7 +432,7 @@ useEffect(() => {
             className="volume-control"
             onMouseEnter={() => setShowVolume(true)}
           >
-            <button className="music-button"
+            <button className="music-button" id="volume-button"
             onClick={() => {
               if (volume > 0) {
                 setPrevVolume(volume); // Guarda el volumen actual
