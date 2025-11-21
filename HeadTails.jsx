@@ -13,10 +13,12 @@ const HeadTails = ({ setTurn, setStartFlag, theme, setIsPlaying }) => {
  const [randomOutcome, setRandomOutcome] = useState("");
  const [themeHead, setThemeHead] = useState("");     // theme-selected, theme-correct, theme-failed
  const [themeTails, setThemeTails] = useState("");   // theme-selected, theme-correct, theme-failed
+ const [hover, setHover] = useState("hover-effect");
 
  const handleHeadOrTails = (selected) => {
   if (startAnimation || resultFlag) return; // Prevent multiple clicks during animation
     setStartAnimation(true);
+    setHover("");
     coinFlip.play();
     setTimeout(() => {
       const outcomes = ["head", "tails"];
@@ -72,7 +74,7 @@ useEffect(() => {
         <div className={`popup-coin ${theme}`}>
           <h2 className='headtailstitle'>Choose head or tails to see who starts first!</h2>
           <div className="coin-options">
-          <div className={`coin-option ${themeHead}`} onClick={() => { 
+          <div className={`coin-option ${themeHead} ${hover}`} onClick={() => { 
             if (startAnimation || resultFlag) return;
             handleHeadOrTails("head")
             setThemeHead("theme-selected");
@@ -80,7 +82,7 @@ useEffect(() => {
           <img src="assets/head.png" alt="Head" className='imgcoin' />
           <p>Head</p>
           </div>
-          <div className={`coin-option ${themeTails}`} onClick={() => { 
+          <div className={`coin-option ${themeTails} ${hover}`} onClick={() => { 
             if (startAnimation || resultFlag) return;
             handleHeadOrTails("tails")
             setThemeTails("theme-selected");}}>

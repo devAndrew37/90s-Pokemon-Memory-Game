@@ -279,7 +279,7 @@
   transition: transform 0.2s;
 }
 
-.coin-option:hover {
+.hover-effect:hover {
   transform: scale(1.1);
   background-color: #f0f0f0;
 }
@@ -401,6 +401,33 @@
   }
   .gifcoin {
   width: 180px;
+  }
+  .game-area {
+    max-width: 1800px !important;
+    position: relative;
+    left: 900px;
+  }
+  .game-board {
+    width: 100% !important;
+  }
+  .second-player-container, .first-player-container {
+    width: 1800px !important;
+  }
+  .first-player, .cpu-player, .player2-player {
+    position: relative !important;
+  }
+  .first-player, .player2-player {
+    left: 50px !important;
+    width: 700vw !important;
+    max-width: 600vw !important;
+  }
+  .cpu-player {
+    left: 100px !important;
+    width: 600vw !important;
+    max-width: 395vw !important;
+  }
+  #first-player-title, #second-player-title, #cpu-title {
+    white-space: nowrap;
   }
 }
 

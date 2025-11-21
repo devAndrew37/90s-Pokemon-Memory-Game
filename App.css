@@ -384,11 +384,12 @@ footer a {
     font-size: 25px !important;
   }
   nav {
-    position: fixed;
-    top: 0;
-    width: 100vw;
-    left: 0;
+    position: fixed !important;
+    top: 0 !important;
+    width: 100vw !important;
+    left: 0 !important;
     z-index: 101;
+    box-sizing: border-box !important;
   }
   .music-player, footer {
     position: fixed !important;
@@ -400,6 +401,7 @@ footer a {
     border: none !important;
     box-shadow: none !important;
     padding: 0 !important;
+    box-sizing: border-box !important;
   }
   footer {
   padding-top: 8px !important;
