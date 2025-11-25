@@ -367,7 +367,7 @@
   right: 120px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 600px) {          /* modo portrait */
  .popup-coin {
     position: fixed;
     width: 100vw !important;
@@ -403,7 +403,7 @@
   width: 180px;
   }
   .game-area {
-    max-width: 1800px !important;
+    max-width: 1200px !important;
     position: relative;
     left: 900px;
   }
@@ -418,12 +418,12 @@
   }
   .first-player, .player2-player {
     left: 50px !important;
-    width: 700vw !important;
+    width: 600vw !important;
     max-width: 600vw !important;
   }
   .cpu-player {
     left: 100px !important;
-    width: 600vw !important;
+    width: 395vw !important;
     max-width: 395vw !important;
   }
   #first-player-title, #second-player-title, #cpu-title {
@@ -447,8 +447,10 @@
     font-size: 2.2rem;
   }
   .coin-options {
-    gap: 480px !important;
+    position: relative !important;
+    gap: 500px !important;
     right: 0px;
+    top: -10px !important;
     height: 50% !important;
     width: 100% !important;
     z-index: 99999 !important;
@@ -461,7 +463,7 @@
     position: relative;
     margin-top: 0.5rem;
     text-align: center;
-    bottom: 120px;
+    bottom: 160px;
   }
   .imgcoin {
     width: 70px;
@@ -484,17 +486,24 @@
     position: relative !important;
   }
   .first-player, .player2-player {
-    left: 50px !important;
-    width: 700vw !important;
-    max-width: 600vw !important;
+    left: 250px !important;
+    width: 1700px !important;
+    max-width: 1700px !important;
   }
   .cpu-player {
-    left: 100px !important;
-    width: 600vw !important;
-    max-width: 395vw !important;
+    left: 300px !important;
+    width: 1550px !important;
+    max-width: 1700px !important;
   }
   #first-player-title, #second-player-title, #cpu-title {
     white-space: nowrap;
+    left: 150px !important;
+  }
+  .first-player-container {
+    padding-bottom: 100px !important;
+  }
+  .second-player-container {
+    padding-top: 50px !important;
   }
 }
 
