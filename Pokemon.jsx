@@ -53,7 +53,7 @@ const Pokemon = ({ name, url, onClose, theme }) => {
      {pokemon && (
       <div className="pokemon-overlay">
         <div className={`popup-pokemon ${theme}`}>
-          <button onClick={onClose} style={{ float: "right", position: "relative", left: "30px", top: "20px", backgroundColor: "transparent" }}>✖</button>
+          <button onClick={onClose} className="close-button">✖</button>
           <h1 className={`pokeName ${theme}`}>{getDisplayName(pokemon.name)}</h1>
           <img id="pokemon-sprite" src={pokemon.sprites.front_default} alt={pokemon.name} />
           <p className={`pokeText ${theme}`}>Height: {pokemon.height/10} m</p>

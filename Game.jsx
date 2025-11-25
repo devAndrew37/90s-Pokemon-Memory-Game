@@ -306,7 +306,7 @@ return (
       </div>
       <div className="game-area">
       <div className="turn-indicator left">
-      <div style={{ position:"absolute" }}>
+      <div className="score-container">
         <h3 className={`score-player2`}>{score.player2}</h3>
         <h3 className={`score-player1`}>{score.player1}</h3>
       </div>
@@ -314,7 +314,7 @@ return (
       </div>
       <div className={`game-board ${theme}`}>
         {cards.map((card, index) => (
-          <div key={index} style={{ width: "100%", height: "100%" }}>
+          <div key={index} className="card-board">
             {!removed[index] ? (
               <div
                 className={`card${flipped[index] ? " flipped" : ""}`} 
