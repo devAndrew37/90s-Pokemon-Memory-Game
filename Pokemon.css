@@ -33,7 +33,7 @@
 
 .pokeText {
   font-size: 35px;
-  font-family: "Press Start 2P", sans-serif;
+  font-family: 'GBBoot', Arial, sans-serif;
   text-align: center;
   margin-top: 60px;
   padding: 0px;
@@ -41,7 +41,7 @@
 
 .pokeName {
   font-size: 40px;
-  font-family: "Press Start 2P", sans-serif;
+  font-family: 'GBBoot', Arial, sans-serif;
   text-align: center;
   margin-top: 60px;
   margin-bottom: 40px;
@@ -617,11 +617,11 @@
     position: relative !important;
   }
   .pokemon1-container {
-    left: -60px !important;
+    left: -55px !important;
     top: -80px !important;
   }
   .pokemon2-container {
-    left: -60px !important;
+    left: -55px !important;
     top: -40px !important;
   }
   .moveset {
@@ -733,7 +733,6 @@
     width: 150px !important;
     height: 150px !important;
     top: 170px !important;
-    left: 10px !important;
   }
   #pokemon-battle-sprite-2 {
     width: 125px !important;
