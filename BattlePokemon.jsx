@@ -60,6 +60,8 @@ const Battle = ({ id1, id2, theme, showTransition, setShowTransition, onClose, s
  const [animation2, setAnimation2] = useState("");
  const [status1, setStatus1] = useState("");
  const [status2, setStatus2] = useState("");
+ const [shinyClass1, setShinyClass1] = useState("");
+ const [shinyClass2, setShinyClass2] = useState("");
  const youWin = new Audio("assets/youwin.mp3");
  const youLose = new Audio("assets/lose.mp3");
  const select = new Audio("assets/select.mp3");
@@ -862,8 +864,8 @@ useEffect(() => {
  }, [id1, id2]);
 
 useEffect(() => {
-  setShiny1(Math.random() < 0.90); // 10% de probabilidad para sacar un shiny
-  setShiny2(Math.random() < 0.90);
+  setShiny1(Math.random() < 0.60);    // 10% de probabilidad para sacar un shiny
+  setShiny2(Math.random() < 0.60);
   setGenre1(Math.random() < 0.5 ? "♂" : "♀");
   setGenre2(Math.random() < 0.5 ? "♂" : "♀");
   setOverlay("pokemon-battle-overlay-black");
@@ -881,12 +883,14 @@ useEffect(() => {
       setPoke1Img(pokemon1.sprites.back_default);
     } else {
       setPoke1Img(pokemon1.sprites.back_shiny);
+      setShinyClass1("shiny");
       setShinyFound1(prev => [...prev, pokemon1.id]);
     }
     if (shiny2) {
       setPoke2Img(pokemon2.sprites.front_default);
     } else {
       setPoke2Img(pokemon2.sprites.front_shiny);
+      setShinyClass2("shiny");
       setShinyFound2(prev => [...prev, pokemon2.id]);
     }
   }
@@ -914,8 +918,8 @@ useEffect(() => {
                 return (
                   <div key={idx} className="pkmn-battled">
                     {pairResults[idx] && <img src={pairResults[idx].winner === pkmn[0].name ? "assets/wincheck.png" : "assets/losecheck.png"} alt="status" className={pairResults[idx].winner === pkmn[0].name ? "win-icon-short" : "lose-icon-short"} />}
-                      <img src={shinyFound1.includes(pkmnId) ? `assets/sprites/${pkmnId}_front_shiny.png` : `assets/sprites/${pkmnId}_front_default.png`} alt={pkmn[0].name} className="pkmn-img" style={{ width:"180px" }} />
-                      <p>{getDisplayName(pkmn[0].name)}</p>
+                      <img src={shinyFound1.includes(pkmnId) ? `assets/sprites/${pkmnId}_front_shiny.png` : `assets/sprites/${pkmnId}_front_default.png`} alt={pkmn[0].name} className="pkmn-img" width="180px" />
+                      <p className={shinyFound1.includes(pkmnId) ? `${shinyClass1}` : ""}>{getDisplayName(pkmn[0].name)}</p>
                     <br />
                   </div>
                 );
@@ -931,8 +935,8 @@ useEffect(() => {
                 return (
                   <div key={idx} className="pkmn-battled">
                     {pairResults[idx] && <img src={pairResults[idx].winner === pkmn[0].name ? "assets/wincheck.png" : "assets/losecheck.png"} alt="status" className={pairResults[idx].winner === pkmn[0].name ? "win-icon-short" : "lose-icon-short"} />}
-                      <img src={shinyFound2.includes(pkmnId2) ? `assets/sprites/${pkmnId2}_front_shiny.png` : `assets/sprites/${pkmnId2}_front_default.png`} alt={pkmn[0].name} className="pkmn-img" style={{ width:"190px" }} />
-                      <p>{getDisplayName(pkmn[0].name)}</p>
+                      <img src={shinyFound2.includes(pkmnId2) ? `assets/sprites/${pkmnId2}_front_shiny.png` : `assets/sprites/${pkmnId2}_front_default.png`} alt={pkmn[0].name} className="pkmn-img" width="180px" />
+                      <p className={shinyFound2.includes(pkmnId2) ? `${shinyClass2}` : ""}>{getDisplayName(pkmn[0].name)}</p>
                     <br />
                   </div>
                 );
@@ -950,7 +954,7 @@ useEffect(() => {
         )} 
         <div className="pokemon2-container">
         <div className="pokemon2-stats">
-          <h1 className="pokeName-battle-2">{getDisplayName(pokemon2.name)}</h1>
+          <h1 className={`pokeName-battle-2 ${shinyClass2}`}>{getDisplayName(pokemon2.name)}</h1>
           <h3 className="pokeText-battle-2">:L50 {genre2} <span className={`status-pokemon ${status2}`}>{status2}</span> </h3>
           <div className="hp-bar-container-2">
             <span className="hp-bar-label">HP:</span>
@@ -972,7 +976,7 @@ useEffect(() => {
         )}
         </div>
         <div className="pokemon1-stats">
-          <h1 className={`pokeName-battle`}>{getDisplayName(pokemon1.name)}</h1>
+          <h1 className={`pokeName-battle ${shinyClass1}`}>{getDisplayName(pokemon1.name)}</h1>
           <h3 className="pokeText-battle">:L50 {genre1} <span className={`status-pokemon ${status1}`}>{status1}</span> </h3>
           <div className="hp-bar-container">
             <span className="hp-bar-label">HP:</span>
@@ -1002,7 +1006,7 @@ useEffect(() => {
             setMessageFlag(true); 
             setBattleMessage("Running away...");
             setTimeout(() => {
-            setPoke1Img("");
+            setPoke1Img("assets/runaway.png");
             runAway.play();
               finishFight(id2);
             }, 1000); }} className="options">Run</button>

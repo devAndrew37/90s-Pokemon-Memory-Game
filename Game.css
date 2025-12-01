@@ -396,6 +396,12 @@
   width: 100px;
 }
 
+.popup-buttons {  
+  display: flex; 
+  gap: 1rem; 
+  justify-content: center; 
+}
+
 @media (max-width: 600px) {          /* modo portrait */
  .popup-coin {
     position: absolute;
@@ -581,6 +587,9 @@
     left: 150px !important;
     top: 0px !important;
   }
+  .end-message {
+    font-size: 3rem !important;
+  }
 }
 
 @media (max-width: 900px) and (max-height: 400px) {          /* modo landscape */
@@ -711,7 +720,8 @@ body.theme-mewtwo {
 }
 
 
-.game-board.theme-pikachu {
+.game-board.theme-pikachu,
+button.theme-pikachu {
   background-color: #261c14;
 }
 
@@ -737,7 +747,8 @@ body.theme-mewtwo {
 
 .first-player.theme-charmander,
 .player2-player.theme-charmander,
-.cpu-player.theme-charmander {
+.cpu-player.theme-charmander,
+button.theme-charmander {
   background-color: #a23004;
 }
 
@@ -758,7 +769,8 @@ body.theme-mewtwo {
 
 .first-player.theme-bulbasaur,
 .player2-player.theme-bulbasaur,
-.cpu-player.theme-bulbasaur {
+.cpu-player.theme-bulbasaur,
+button.theme-bulbasaur {
   background-color: #d8b87f;
 }
 
@@ -779,7 +791,8 @@ body.theme-mewtwo {
 
 .first-player.theme-squirtle,
 .player2-player.theme-squirtle,
-.cpu-player.theme-squirtle {
+.cpu-player.theme-squirtle,
+button.theme-squirtle {
   background-color: #ba681c;
 }
 
@@ -800,7 +813,8 @@ body.theme-mewtwo {
 
 .first-player.theme-mewtwo,
 .player2-player.theme-mewtwo,
-.cpu-player.theme-mewtwo {
+.cpu-player.theme-mewtwo,
+button.theme-mewtwo {
   background-color: #191622;
 }
 

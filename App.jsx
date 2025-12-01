@@ -66,7 +66,7 @@ const easyMode = () => {
     startSound2.play();
     setTimeout(() =>{
       if(battleMode) {
-        navigate('/gamebattle', { state: { mode: 'cpu', difficulty: 10, numberBattles: 4 } });
+        navigate('/gamebattle', { state: { mode: 'cpu', difficulty: 10, numberBattles: 3 } });
       } else {
         navigate('/game', { state: { mode: 'cpu', difficulty: 4 } });
       }
@@ -180,7 +180,7 @@ return (
       {battleMode && (<div style={{ display: "flex", gap: "1rem" }}>
       <div className="tooltip-container">
       <button onClick={easyMode} className={`${theme}`}>Easy</button>
-      <span className={`${theme} tooltip-text difficulty`}>The player who wins 4 battles first takes the cake!</span>
+      <span className={`${theme} tooltip-text difficulty`}>The player who wins 3 battles first takes the cake!</span>
       </div>
       <div className="tooltip-container">
       <button onClick={normalMode} className={`${theme}`}>Normal</button>

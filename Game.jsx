@@ -276,15 +276,15 @@ return (
     {showPopup && (
       <div className="popup-overlay">
         <div className={`popup ${theme}`}>
-          <h2>{popupMessage}</h2>
-          <div style={{ display: "flex", gap: "1rem", justifyContent: "center" }}>
-          <button onClick={() => {
+          <h2 className="end-message">{popupMessage}</h2>
+          <div className="popup-buttons">
+          <button className={`${theme}`} onClick={() => {
             mainMenu.play();
             setTimeout(() => {
               navigate('/');
             }, 2600);
           }}>Main Menu</button>
-          <button onClick={() => setShowPopup(false)}>Close</button>
+          <button className={`${theme}`} onClick={() => setShowPopup(false)}>Close</button>
           </div>
         </div>
       </div>
