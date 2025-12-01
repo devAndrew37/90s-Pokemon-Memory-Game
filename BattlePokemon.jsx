@@ -864,8 +864,8 @@ useEffect(() => {
  }, [id1, id2]);
 
 useEffect(() => {
-  setShiny1(Math.random() < 0.60);    // 10% de probabilidad para sacar un shiny
-  setShiny2(Math.random() < 0.60);
+  setShiny1(Math.random() < 0.85);    // 15% de probabilidad para sacar un shiny
+  setShiny2(Math.random() < 0.85);
   setGenre1(Math.random() < 0.5 ? "♂" : "♀");
   setGenre2(Math.random() < 0.5 ? "♂" : "♀");
   setOverlay("pokemon-battle-overlay-black");
