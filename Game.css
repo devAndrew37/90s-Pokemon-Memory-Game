@@ -434,12 +434,10 @@
     top: 25px;
   }
   .result-tailstitle {
-    -webkit-text-stroke: 0.4px rgb(63, 94, 140) !important;
     position: relative !important;
     top: 120px !important;
   }
   .result-tailstitle-2 {
-    -webkit-text-stroke: 0.4px rgb(63, 94, 140) !important;
     position: relative !important;
     top: 40px !important;
   }
