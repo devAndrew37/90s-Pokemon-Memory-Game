@@ -39,6 +39,7 @@ function Home({ setIsPlaying, theme }) {
   const [anotherPokemon, setAnotherPokemon] = useState(false);
   const [battleMode, setBattleMode] = useState(false);
   const [modeFlag, setModeFlag] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
 const handleStart = () => {
     setStart(true);
@@ -144,6 +145,27 @@ return (
   <>
   <img src="assets/cover.png" alt="cover" id="cover" width="400px" />
     <div id="home">
+      {showPopup && (
+        <div className="popup-overlay">
+          <div className={`popup-help ${theme}`}>
+          <h2 className='help-h2'>Classic Mode</h2>
+          <p className='help-p'>Play Memory in Classic Mode, match Pokemon pairs and win points!</p>
+          <p className='help-p'>Just like the board game!</p>
+          <img src="assets/classic.gif" className='help-gif' alt="classic mode" width="100%" />
+          <br />
+          <br />
+          <br />
+          <h2 className='help-h2'>Battle Mode</h2>
+          <p className='help-p'>Play in Battle Mode, it's a memory game but with a twist: Gameboy battles as we remember from back in the 90s!</p>
+          <img src="assets/battle.gif" className='help-gif' alt="battle mode" width="100%" />
+          <br />
+          <br />
+          <br />
+          <button onClick={() => setShowPopup(false)} className={`${theme}`}>Ok!</button>
+          <br />
+        </div>
+      </div>
+      )}
       <br />
       <br />
       <img src="assets/pokegang.gif" alt="the gang" id="gang-home" />
@@ -161,7 +183,7 @@ return (
       <button onClick={() => handleBattleMode(true)} className={`${theme}`}>Battle Mode!</button>
       <span className={`${theme} tooltip-text right`}>Play in Battle Mode, it's a memory game but with a twist: Gameboy battles as we remember from back in the 90s!</span>
       </div>
-      </div>)}      
+      </div>)}  
       {(start && modeFlag && !cpuMode && !battleMode) && (<div style={{ display: "flex", gap: "1rem" }}>
       <button onClick={() => setCpuMode(true)} className={`${theme}`}>Player vs CPU</button>
       <button onClick={twoPlayerMode} className={`${theme}`}>2 Players</button>
@@ -198,6 +220,7 @@ return (
       </div>
       </div>)}
       <br />
+      {start && <button onTouchEnd={() => {setShowPopup(true)}} className="help-button">?</button>}
       <img src="assets/pikachuyellow.gif" alt="pikapika" width="20%" id="pikachu-home" onClick={() => {
         const randomPika = Math.random() < 0.5 ? pikaPika : pikachuStart;
         randomPika.play();

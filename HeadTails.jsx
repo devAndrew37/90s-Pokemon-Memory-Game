@@ -92,8 +92,8 @@ useEffect(() => {
           </div>
           <div className="coin-result">
           {resultFlag && !startAnimation && <img src={`assets/${randomOutcome}.png`} alt={randomOutcome} className='imgcoin' />}
-          {!startAnimation && !resultFlag && <h3 style={{ position: "relative", top: "120px" }}>{heading}</h3>}
-          {!startAnimation && resultFlag && <h3 style={{ position: "relative", top: "40px" }}>{heading}</h3>}
+          {!startAnimation && !resultFlag && <p className="result-tailstitle">{heading}</p>}
+          {!startAnimation && resultFlag && <p className="result-tailstitle-2">{heading}</p>}
           {startAnimation && <img src={`assets/flip.gif`} alt="coin flip" className='gifcoin' />}
           </div>
         </div>
