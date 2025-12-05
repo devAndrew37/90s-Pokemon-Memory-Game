@@ -43,7 +43,8 @@ Controles:
 
 Creditos:
 - https://www.pokemonpalette.com/ por Yassen Shopov (https://github.com/yassenshopov) por la increíble herramienta que creó para las paletas de colores de Pokémon.
-- Mimo (mimo.org) por el increíble servidor API de Pokedex que crearon (https://pokedex.mimo.dev/)
+- Mimo (mimo.org) por el increíble servidor API de Pokedex que crearon (https://pokedex.mimo.dev/).
+- Música de piano creada por Elden Tales (https://www.youtube.com/playlist?list=OLAK5uy_kkI6mF1DUEL-r8K-rHuUPCi-ue1O38Nkc).
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -91,5 +92,6 @@ Controls:
 Credits: 
 - https://www.pokemonpalette.com/ by Yassen Shopov (https://github.com/yassenshopov) for the amazing tool he created for Pokemon color palettes.
 - Mimo (mimo.org) for the amazing Pokedex API server they created (https://pokedex.mimo.dev/).
+- Piano cover songs created by Elden Tales (https://www.youtube.com/playlist?list=OLAK5uy_kkI6mF1DUEL-r8K-rHuUPCi-ue1O38Nkc).
 
   
