@@ -5,13 +5,25 @@ import "./App.css";
 import Game from './Game.jsx';
 import GameBattle from './GameBattle.jsx';
 import { cardDeck } from './cardDeck';
+import { assets } from './assetsList';
+
+function preloadAsset(src) {
+  if (src.match(/\.(png|jpg|jpeg|gif|svg)$/)) {
+    const img = new window.Image();
+    img.src = src;
+  } else if (src.match(/\.(mp3|wav|ogg)$/)) {
+    const audio = new window.Audio();
+    audio.src = src;
+  }
+  console.log(`Preloaded: ${src}`);
+}
 
 function NavigationMenu({ theme }) {
     return (
     <>
     <nav className={`${theme}`}>
       <ul>
-        <li><Link to="/" className={`${theme}`}>Home</Link></li>
+        <li><Link to="/" className={`${theme}`} onClick={() => setShowPopup(false)}>Home</Link></li>
         <li><Link to="/about" className={`${theme}`}>About</Link></li>
       </ul>
     </nav>
@@ -40,6 +52,8 @@ function Home({ setIsPlaying, theme }) {
   const [battleMode, setBattleMode] = useState(false);
   const [modeFlag, setModeFlag] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  
+  
 
 const handleStart = () => {
     setStart(true);
@@ -140,6 +154,10 @@ useEffect(() => {
     setModeFlag(false);
   }
 }, [location.pathname, location.search]);
+  
+useEffect(() => {
+  assets.forEach(preloadAsset);
+}, []);
 
 return (
   <>
@@ -148,21 +166,29 @@ return (
       {showPopup && (
         <div className="popup-overlay">
           <div className={`popup-help ${theme}`}>
-          <h2 className='help-h2'>Classic Mode</h2>
-          <p className='help-p'>Match Pokemon pairs and win points!</p>
-          <p className='help-p'>Just like the board game!</p>
-          <img src="assets/classic.gif" className='help-gif' alt="classic mode" width="100%" />
-          <br />
-          <br />
-          <br />
-          <h2 className='help-h2'>Battle Mode</h2>
-          <p className='help-p'>It's a memory game but with a twist: Gameboy battles as we remember from back in the 90s!</p>
-          <img src="assets/battle.gif" className='help-gif' alt="battle mode" width="100%" />
-          <br />
-          <br />
-          <br />
-          <button onClick={() => setShowPopup(false)} className={`${theme}`}>Ok!</button>
-          <br />
+            <button onClick={() => setShowPopup(false)} className="close-button-help">✖</button>
+            <h2 className='help-h2'>Classic Mode</h2>
+            <p className='help-p'>Match Pokemon pairs and win points!</p>
+            <p className='help-p'>Just like the board game!</p>
+            <img src="assets/classic.gif" className='help-gif' alt="classic mode" />
+            <br />
+            <br />
+            <br />
+            <h2 className='help-h2'>Battle Mode</h2>
+            <p className='help-p'>It's a memory game but with a twist: </p>
+            <p className='help-p'>Gameboy battles as we remember from back in the 90s!</p>
+            <img src="assets/battle.gif" className='help-gif' alt="battle mode" />
+            <br />
+            <br />
+            <p className='help-p'>You can change the theme of the game using the theme icon</p> 
+            <img src="assets/themes.png" alt="themes" width={40} style={{backgroundColor: '#222', borderRadius: '10px', padding: '3px'}} />
+            <br />
+            <br />
+            <p className='help-p'>And you can also change the music using the controls on the bottom left 🎶<img src="assets/charmander.gif" className='char-help' /> </p> 
+            <br />
+            <button onClick={() => setShowPopup(false)} className={`${theme}`}>Ok!</button>
+            <br />
+            <br />
         </div>
       </div>
       )}
@@ -220,7 +246,7 @@ return (
       </div>
       </div>)}
       <br />
-      {start && <button onTouchEnd={() => {setShowPopup(true)}} className="help-button">?</button>}
+      {start && <button onClick={() => {setShowPopup(true)}} className="help-button"></button>}
       <img src="assets/pikachuyellow.gif" alt="pikapika" width="20%" id="pikachu-home" onClick={() => {
         const randomPika = Math.random() < 0.5 ? pikaPika : pikachuStart;
         randomPika.play();
@@ -353,7 +379,16 @@ const musicTracks = [
      { id: 5, title: "Pokemon Blue/Red - Ending", src: "assets/music/Ending.mp3" },
      { id: 6, title: "The Battle at the Summit! - Super Smash Bros. Ultimate OST", src: "assets/music/The Battle at the Summit.mp3" },
      { id: 7, title: "Pokémon Gold/Pokemon Silver Medley - Super Smash Bros. Melee", src: "assets/music/Silver Medley.mp3" },
-     { id: 8, title: "Lumiose City (Pokemon X & Y) - Super Smash Bros. Ultimate Soundtrack", src: "assets/music/Lumiose City.mp3" }
+     { id: 8, title: "Lumiose City (Pokemon X & Y) - Super Smash Bros. Ultimate Soundtrack", src: "assets/music/Lumiose City.mp3" },
+     { id: 9, title: "Vermillion City Piano Theme by Elden Tales", src: "assets/music/Vermillion_City.mp3" },
+     { id: 10, title: "National Park Piano Theme by Elden Tales", src: "assets/music/National_Park.mp3" },
+     { id: 11, title: "Azalea Town Piano Theme by Elden Tales", src: "assets/music/Azalea_Town.mp3" },
+     { id: 12, title: "Cianwood City Piano Theme by Elden Tales", src: "assets/music/Cianwood_City.mp3" },
+     { id: 13, title: "New Bark Town Piano Theme by Elden Tales", src: "assets/music/New_Bark_Town.mp3" },
+     { id: 14, title: "Verdanturf Town Piano Theme by Elden Tales", src: "assets/music/Verdanturf_Town.mp3" },
+     { id: 15, title: "Oldale Town Piano Theme by Elden Tales", src: "assets/music/Oldale_Town.mp3" },
+     { id: 16, title: "Littleroot Town Piano Theme by Elden Tales", src: "assets/music/Littleroot_Town.mp3" },
+     { id: 17, title: "Goldenrod City Piano Theme by Elden Tales", src: "assets/music/Goldenrod_City.mp3" }
    ];
 const themes = ['theme-normal', 'theme-pikachu', 'theme-charmander', 'theme-bulbasaur', 'theme-squirtle', 'theme-mewtwo'];
 const randomSongIndex = Math.floor(Math.random() * musicTracks.length);
@@ -446,16 +481,16 @@ useEffect(() => {
     <>
     <BrowserRouter>
       <div className="music-player">
-        <button className="theme-button">{ theme === "theme-mewtwo" ? <img src="assets/themesb.png" alt="themes" width={30} onClick={handleThemes} /> : <img src="assets/themes.png" alt="themes" width={30} onClick={handleThemes} />}</button>
+        <button title="Theme [T]" className="theme-button">{ theme === "theme-mewtwo" ? <img src="assets/themesb.png" alt="themes" width={30} onClick={handleThemes} /> : <img src="assets/themes.png" alt="themes" width={30} onClick={handleThemes} />}</button>
         <div className="music-controls" style={{ marginRight: "10px" }}>
-          <button className="music-button" onClick={handlePrev}>{ theme === "theme-mewtwo" ? <img src="assets/prevb.png" alt="previous" /> : <img src="assets/prev.png" alt="previous" />}</button>
-          <button className="music-button" onClick={handlePlayPause}>{ theme === "theme-mewtwo" ? <img src={isPlaying ? "assets/pauseb.png" : "assets/playb.png"} alt="play/pause" /> : <img src={isPlaying ? "assets/pause.png" : "assets/play.png"} alt="play/pause" />}</button>
-          <button className="music-button" onClick={handleNext}>{ theme === "theme-mewtwo" ? <img src="assets/nextb.png" alt="next" /> : <img src="assets/next.png" alt="next" />}</button>
+          <button title="Previous Track [P]" className="music-button" onClick={handlePrev}>{ theme === "theme-mewtwo" ? <img src="assets/prevb.png" alt="previous" /> : <img src="assets/prev.png" alt="previous" />}</button>
+          <button title="Play/Pause [Space]" className="music-button" onClick={handlePlayPause}>{ theme === "theme-mewtwo" ? <img src={isPlaying ? "assets/pauseb.png" : "assets/playb.png"} alt="play/pause" /> : <img src={isPlaying ? "assets/pause.png" : "assets/play.png"} alt="play/pause" />}</button>
+          <button title="Next Track [N]" className="music-button" onClick={handleNext}>{ theme === "theme-mewtwo" ? <img src="assets/nextb.png" alt="next" /> : <img src="assets/next.png" alt="next" />}</button>
           <div
             className="volume-control"
             onMouseEnter={() => setShowVolume(true)}
           >
-            <button className="music-button" id="volume-button"
+            <button title="Volume [M / +-]" className="music-button" id="volume-button"
             onClick={() => {
               if (volume > 0) {
                 setPrevVolume(volume); // Guarda el volumen actual

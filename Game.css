@@ -159,7 +159,8 @@
 .first-player,
 .player2-player,
 .cpu-player,
-.all-pokemon-container {
+.all-pokemon-container,
+.popup-help {
   scrollbar-width: thin;              /* Firefox */
   scrollbar-color: #eebb09 rgb(63, 94, 140);      /* Firefox */
 }
