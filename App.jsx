@@ -8,14 +8,19 @@ import { cardDeck } from './cardDeck';
 import { assets } from './assetsList';
 
 function preloadAsset(src) {
-  if (src.match(/\.(png|jpg|jpeg|gif|svg)$/)) {
-    const img = new window.Image();
-    img.src = src;
-  } else if (src.match(/\.(mp3|wav|ogg)$/)) {
-    const audio = new window.Audio();
-    audio.src = src;
-  }
-  console.log(`Preloaded: ${src}`);
+  return new Promise((resolve) => {
+    if (src.match(/\.(png|jpg|jpeg|gif|svg)$/)) {
+      const img = new window.Image();
+      img.onload = img.onerror = resolve;
+      img.src = src;
+    } else if (src.match(/\.(mp3|wav|ogg)$/)) {
+      const audio = new window.Audio();
+      audio.oncanplaythrough = audio.onerror = resolve;
+      audio.src = src;
+    } else {
+      resolve();
+    }
+  });
 }
 
 function NavigationMenu({ theme }) {
@@ -52,6 +57,7 @@ function Home({ setIsPlaying, theme }) {
   const [battleMode, setBattleMode] = useState(false);
   const [modeFlag, setModeFlag] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [loading, setLoading] = useState(true);
   
   
 
@@ -156,8 +162,19 @@ useEffect(() => {
 }, [location.pathname, location.search]);
   
 useEffect(() => {
-  assets.forEach(preloadAsset);
-}, []);
+    Promise.all(assets.map(preloadAsset)).then(() => {
+      setLoading(false);
+    });
+  }, []);
+
+if (loading) {
+  return (
+    <div className="loader-container">
+      <h2 className="loading-text">Loading...</h2>
+      <img src="assets/pikachu_loading.gif" alt="loading" className="loading-gif" />
+    </div>
+  );
+}
 
 return (
   <>
