@@ -85,7 +85,7 @@ const pickCard = (index) => {
       setNoPickFlag(true); // Activar bandera para evitar clicks rapidos
       if (cards[firstCard].figure === cards[index].figure) {
         // Match!
-        match.play();
+        preloadedAudios["/assets/match.mp3"].play();
         setIdPokemon1(cards[firstCard].id);
         //setTimeout(() => showPokemonCard(index), 700);
         setTimeout(() => {
@@ -178,7 +178,7 @@ const cpuTurn = () => {
     setTimeout(() => {
       if (cards[firstIdx].figure === cards[secondIdx].figure) {
         // Match!
-        match.play();
+        preloadedAudios["/assets/match.mp3"].play();
         setIdPokemon2(cards[secondIdx].id);
         setTimeout(() => {
           playPokeSound(cards[secondIdx].id);
@@ -248,12 +248,12 @@ const checkWinner = () => {
     setIsPlaying(false);
     setPopupMessage(`${player1Mode} wins!`);
     setShowPopup(true);
-    tie.play();
+    preloadedAudios["/assets/tie.mp3"].play();
   } else if (score.player2 === numberBattles) {
     setIsPlaying(false);
     setPopupMessage(`${player2Mode} wins!`);
     setShowPopup(true);
-    youLose.play();
+    preloadedAudios["/assets/youlose.mp3"].play();
   } 
 }
 
@@ -380,7 +380,7 @@ return (
           <h2 className="end-message">{popupMessage}</h2>
           <div className="popup-buttons">
           <button className={`${theme}`} onClick={() => {
-            mainMenu.play();
+            preloadedAudios["/assets/mainmenu.mp3"].play();
             setTimeout(() => {
               navigate('/');
             }, 2600);

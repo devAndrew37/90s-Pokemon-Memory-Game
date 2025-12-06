@@ -20,7 +20,7 @@ const HeadTails = ({ setTurn, setStartFlag, theme, setIsPlaying }) => {
   if (startAnimation || resultFlag) return; // Prevent multiple clicks during animation
     setStartAnimation(true);
     setHover("");
-    coinFlip.play();
+    preloadedAudios["/assets/coin.mp3"].play();
     setTimeout(() => {
       const outcomes = ["head", "tails"];
       const randomIndex = Math.floor(Math.random() * outcomes.length);
@@ -29,7 +29,7 @@ const HeadTails = ({ setTurn, setStartFlag, theme, setIsPlaying }) => {
       setResultFlag(true);
         if (selected === outcomes[randomIndex]) {
             setHeading("Way to go! You start first");
-            wonCoin.play();
+            preloadedAudios["/assets/coinwon.mp3"].play();
             if (selected === "head") {
               setThemeHead("theme-correct");
               setThemeTails("");
@@ -44,7 +44,7 @@ const HeadTails = ({ setTurn, setStartFlag, theme, setIsPlaying }) => {
             }, 3000);  
         } else {
             setHeading("Too bad! Opponent starts first");
-            lostCoin.play();
+            preloadedAudios["/assets/coinlost.mp3"].play();
             if (selected === "head") {
               setThemeHead("theme-failed");
               setThemeTails("");
@@ -80,22 +80,22 @@ useEffect(() => {
             handleHeadOrTails("head")
             setThemeHead("theme-selected");
             }}>
-          <img src="assets/head.png" alt="Head" className='imgcoin' />
+          <img src={preloadedImages["/assets/head.png"].src} alt="Head" className='imgcoin' />
           <p>Head</p>
           </div>
           <div className={`coin-option ${themeTails} ${hover}`} onClick={() => { 
             if (startAnimation || resultFlag) return;
             handleHeadOrTails("tails")
             setThemeTails("theme-selected");}}>
-          <img src="assets/tails.png" alt="Tails" className='imgcoin' />
+          <img src={preloadedImages["/assets/tails.png"].src} alt="Tails" className='imgcoin' />
           <p>Tails</p>
           </div>
           </div>
           <div className="coin-result">
-          {resultFlag && !startAnimation && <img src={`assets/${randomOutcome}.png`} alt={randomOutcome} className='imgcoin' />}
+          {resultFlag && !startAnimation && <img src={preloadedImages[`/assets/${randomOutcome}.png`].src} alt={randomOutcome} className='imgcoin' />}
           {!startAnimation && !resultFlag && <p className="result-tailstitle">{heading}</p>}
           {!startAnimation && resultFlag && <p className="result-tailstitle-2">{heading}</p>}
-          {startAnimation && <img src={`assets/flip.gif`} alt="coin flip" className='gifcoin' />}
+          {startAnimation && <img src={preloadedImages["/assets/flip.gif"].src} alt="coin flip" className='gifcoin' />}
           </div>
         </div>
       </div>

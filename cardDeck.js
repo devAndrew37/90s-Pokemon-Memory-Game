@@ -1,3 +1,5 @@
+import { preloadedImages, preloadedAudios } from './App.jsx';
+
 export const cardDeck = [
   {
     src: "assets/Arbo.PNG",

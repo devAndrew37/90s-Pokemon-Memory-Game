@@ -66,8 +66,8 @@ function Home({ setIsPlaying, theme }) {
   
 const handleStart = () => {
     setStart(true);
-    startSound.play();
-    pikachuStart.play();
+    preloadedAudios["/assets/start.mp3"].play();
+    preloadedAudios["/assets/pikachu.mp3"].play();
     navigate({
     pathname: '/',
     search: createSearchParams({ start: 'true' }).toString()
@@ -86,8 +86,8 @@ const handleBattleMode = (battleFlag) => {
 };
 
 const easyMode = () => {
-    pikaPika.play();
-    startSound2.play();
+    preloadedAudios["/assets/pikapika.mp3"].play();
+    preloadedAudios["/assets/start2.mp3"].play();
     setTimeout(() =>{
       if(battleMode) {
         navigate('/gamebattle', { state: { mode: 'cpu', difficulty: 10, numberBattles: 3 } });
@@ -98,8 +98,8 @@ const easyMode = () => {
 };
 
 const normalMode = () => {
-    pikaPika.play();
-    startSound2.play();
+    preloadedAudios["/assets/pikapika.mp3"].play();
+    preloadedAudios["/assets/start2.mp3"].play();
     setTimeout(() =>{
       if(battleMode) {
         navigate('/gamebattle', { state: { mode: 'cpu', difficulty: 12, numberBattles: 6 } });
@@ -110,9 +110,9 @@ const normalMode = () => {
 };
 
 const hardMode = () => {
-    pikaPika.play();
+    preloadedAudios["/assets/pikapika.mp3"].play();
     setTimeout(() =>{
-      metal.pause();
+      preloadedAudios["/assets/metal.mp3"].pause();
       if(battleMode) {
         navigate('/gamebattle', { state: { mode: 'cpu', difficulty: 14, numberBattles: 9 } });
       } else {
@@ -122,8 +122,8 @@ const hardMode = () => {
 };
 
 const twoPlayerMode = () => {
-    pikaPika.play();
-    startSound2.play();
+    preloadedAudios["/assets/pikapika.mp3"].play();
+    preloadedAudios["/assets/start2.mp3"].play();
     setTimeout(() =>{
       if(battleMode) {
         navigate('/gamebattle', { state: { mode: 'player2' } });
@@ -269,9 +269,9 @@ if(!loading) {
       </div>
       </div>)}
       <br />
-      {start && <button onClick={() => {setShowPopup(true)}} className="help-button"></button>}
+      {start && <button onClick={() => {preloadedAudios["/assets/start.mp3"].play(); setShowPopup(true);}} className="help-button"></button>}
       <img src={preloadedImages["/assets/pikachuyellow.gif"].src} alt="pikapika" width="20%" id="pikachu-home" onClick={() => {
-        const randomPika = Math.random() < 0.5 ? pikaPika : pikachuStart;
+        const randomPika = Math.random() < 0.5 ? preloadedAudios["/assets/pikapika.mp3"] : preloadedAudios["/assets/pikachu.mp3"];
         randomPika.play();
       }} />
   <div className="card-home-wrapper">

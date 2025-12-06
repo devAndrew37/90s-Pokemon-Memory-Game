@@ -38,14 +38,14 @@ const Game = ({ setIsPlaying, theme }) => {
   const [correctCpuFlag, setCorrectCpuFlag] = useState(false);
   const [pokemonDataFlag, setPokemonDataFlag] = useState(false);
   const [pickedIndex, setPickedIndex] = useState(0);
-  const [pokemonAnimation, setPokemonAnimation] = useState("assets/pikapika.gif");
+  const [pokemonAnimation, setPokemonAnimation] = useState(preloadedImages["/assets/pikapika.gif"].src);
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
   const remainingCards = removed.filter(r => !r).length;
   const [score, setScore] = useState({ player1: 0, player2: 0 });
 
   const randomAnimation = () => {
-    const animations = ["assets/charmander.gif", "assets/pikapika.gif", "assets/squirtle.gif", "assets/squirtle2.gif", "assets/bulbasaur.gif"];
+    const animations = [preloadedImages["/assets/charmander.gif"].src, preloadedImages["/assets/pikapika.gif"].src, preloadedImages["/assets/squirtle.gif"].src, preloadedImages["/assets/squirtle2.gif"].src, preloadedImages["/assets/bulbasaur.gif"].src];
     setPokemonAnimation(animations[Math.floor(Math.random() * animations.length)]);
   };
   const shuffleCards = (array) => {
@@ -68,7 +68,7 @@ const pickCard = (index) => {
       setNoPickFlag(true); // Activar bandera para evitar clicks rapidos
       if (cards[firstCard].figure === cards[index].figure) {
         // Match!
-        match.play();
+        preloadedAudios["/assets/match.mp3"].play();
         setTimeout(() => showPokemonCard(index), 700);
         setTimeout(() => {
           if (turn === 1) {
@@ -156,7 +156,7 @@ const cpuTurn = () => {
     setTimeout(() => {
       if (cards[firstIdx].figure === cards[secondIdx].figure) {
         // Match!
-        match.play();
+        preloadedAudios["/assets/match.mp3"].play();
         setTimeout(() => {
           playPokeSound(cards[secondIdx].id);
         }, 700);
@@ -217,15 +217,15 @@ const checkWinner = () => {
   if (found1.length > found2.length){
     setPopupMessage(`${player1Mode} wins!`);
     setShowPopup(true);
-    youWin.play();
+    preloadedAudios["/assets/youwin.mp3"].play();
   } else if (found1.length < found2.length) {
     setPopupMessage(`${player2Mode} wins!`);
     setShowPopup(true);
-    youLose.play();
+    preloadedAudios["/assets/youlose.mp3"].play();
   } else {
     setPopupMessage("It's a tie!");
     setShowPopup(true);
-    tie.play();
+    preloadedAudios["/assets/tie.mp3"].play();
   }
 }
 
@@ -280,7 +280,7 @@ return (
           <h2 className="end-message">{popupMessage}</h2>
           <div className="popup-buttons">
           <button className={`${theme}`} onClick={() => {
-            mainMenu.play();
+            preloadedAudios["/assets/mainmenu.mp3"].play();
             setTimeout(() => {
               navigate('/');
             }, 2600);
