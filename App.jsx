@@ -238,7 +238,14 @@ if(!loading) {
             <img src={preloadedImages["/assets/back.PNG"].src} alt="back" />
           </div>
           <div className="card-back">
-            <img src={preloadedImages[randomCard.src].src} alt={randomCard.name} />
+            <img
+              src={
+                preloadedImages[randomCard.src]
+                  ? preloadedImages[randomCard.src].src
+                  : randomCard.src
+              }
+              alt={randomCard.name}
+            />
           </div>
         </div>
       </div>
