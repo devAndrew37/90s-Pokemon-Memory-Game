@@ -28,7 +28,8 @@ function preloadAsset(src) {
   });
 }
 
-function NavigationMenu({ theme }) {
+function NavigationMenu({ theme, loading }) {
+  if (!loading) {
     return (
     <>
     <nav className={`${theme}`}>
@@ -42,9 +43,9 @@ function NavigationMenu({ theme }) {
       </footer>
     </>
     );
-}
+}}
 
-function Home({ setIsPlaying, theme }) {
+function Home({ setIsPlaying, theme, loading }) {
   const [start, setStart] = useState(false);
   const [cpuMode, setCpuMode] = useState(false);
   const navigate = useNavigate();
@@ -53,7 +54,6 @@ function Home({ setIsPlaying, theme }) {
   const startSound = new Audio('assets/start.mp3');
   const pikaPika = new Audio('assets/pikapika.mp3');
   const startSound2 = new Audio('assets/start2.mp3');
-  const metal = new Audio('assets/metal.mp3');
 
   const [randomCard, setRandomCard] = useState(null);
   const [flipped, setFlipped] = useState(false);
@@ -62,7 +62,6 @@ function Home({ setIsPlaying, theme }) {
   const [battleMode, setBattleMode] = useState(false);
   const [modeFlag, setModeFlag] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
-  const [loading, setLoading] = useState(true);
   
 const handleStart = () => {
     setStart(true);
@@ -111,8 +110,8 @@ const normalMode = () => {
 
 const hardMode = () => {
     preloadedAudios["/assets/pikapika.mp3"].play();
+    preloadedAudios["/assets/start2.mp3"].play();
     setTimeout(() =>{
-      preloadedAudios["/assets/metal.mp3"].pause();
       if(battleMode) {
         navigate('/gamebattle', { state: { mode: 'cpu', difficulty: 14, numberBattles: 9 } });
       } else {
@@ -163,23 +162,6 @@ useEffect(() => {
     setModeFlag(false);
   }
 }, [location.pathname, location.search]);
-  
-useEffect(() => {
-    Promise.all(assets.map(preloadAsset)).then(() => {
-      setLoading(false);
-      console.log(preloadedImages);
-      console.log(preloadedAudios);
-    });
-  }, []);
-
-if (loading) {
-  return (
-    <div className="loader-container">
-      <h2 className="loading-text">Loading...</h2>
-      <img src="assets/pikachu_loading.gif" alt="loading" className="loading-gif" />
-    </div>
-  );
-}
 
 if(!loading) {
   return (
@@ -240,13 +222,7 @@ if(!loading) {
       {(cpuMode && !battleMode) && (<div style={{ display: "flex", gap: "1rem" }}>
       <button onClick={easyMode} className={`${theme}`}>Easy</button>
       <button onClick={normalMode} className={`${theme}`}>Normal</button>
-      <button onClick={hardMode} onMouseMove={() => {
-        metal.play(0);
-        metal.loop = true;
-      }} onMouseLeave={() => {
-        metal.pause();
-        metal.currentTime = 0;
-      }} id='hardButton'>Hard</button>
+      <button onClick={hardMode} id='hardButton'>Hard</button>
       </div>)}
       {battleMode && (<div style={{ display: "flex", gap: "1rem" }}>
       <div className="tooltip-container">
@@ -258,13 +234,7 @@ if(!loading) {
       <span className={`${theme} tooltip-text difficulty`}>The player who wins 6 battles first is a true Pokemon trainer!</span>
       </div>
       <div className="tooltip-container">
-      <button onClick={hardMode} onMouseMove={() => {
-        metal.play(0);
-        metal.loop = true;
-      }} onMouseLeave={() => {
-        metal.pause();
-        metal.currentTime = 0;
-      }} id='hardButton'>Hard</button>
+      <button onClick={hardMode} id='hardButton'>Hard</button>
       <span className={`${theme} tooltip-text difficulty`}>The player who wins 9 battles first is the Pokemon champion!</span>
       </div>
       </div>)}
@@ -425,6 +395,7 @@ const [showVolume, setShowVolume] = useState(false);
 const [volume, setVolume] = useState(0.6); // 1 = 100%
 const [prevVolume, setPrevVolume] = useState(1);
 const [theme, setTheme] = useState(themes[randomThemeIndex]);
+const [loading, setLoading] = useState(true);
 
 const handlePrev = () => {
   setCurrentTrackIndex((prev) => (prev === 0 ? musicTracks.length - 1 : prev - 1));
@@ -452,6 +423,12 @@ const handleThemes = () => {
     return themes[nextIndex];
   });
 };
+
+useEffect(() => {
+    Promise.all(assets.map(preloadAsset)).then(() => {
+      setLoading(false);
+    });
+  }, []);
 
 useEffect(() => {
   document.body.className = theme;
@@ -501,6 +478,16 @@ useEffect(() => {
   return () => window.removeEventListener("keydown", handleKeyDown);
 }, [handlePrev, handleNext, handlePlayPause, handleVolumeChange]);
 
+if (loading) {
+  return (
+    <div className="loader-container">
+      <h2 className="loading-text">Loading...</h2>
+      <img src="assets/pikachu_loading.gif" alt="loading" className="loading-gif" />
+    </div>
+  );
+}
+
+if (!loading) {
   return (
     <>
     <BrowserRouter>
@@ -554,9 +541,9 @@ useEffect(() => {
           onEnded={handleNext}
         />
       </div>
-      <NavigationMenu theme={theme} />
+      <NavigationMenu theme={theme} loading={loading} />
       <Routes>
-        <Route path="/" element={<Home setIsPlaying={setIsPlaying} theme={theme} />} />
+        <Route path="/" element={<Home setIsPlaying={setIsPlaying} theme={theme} loading={loading} />} />
         <Route path="/about" element={<About theme={theme} />} />
         <Route path="/game" element={<Game setIsPlaying={setIsPlaying} theme={theme} />} />
         <Route path="/gamebattle" element={<GameBattle setIsPlaying={setIsPlaying} theme={theme} />} />
@@ -564,6 +551,6 @@ useEffect(() => {
     </BrowserRouter>
     </>
   );
-}
+}}
 
 export default App;
