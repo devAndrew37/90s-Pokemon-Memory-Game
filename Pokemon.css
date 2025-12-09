@@ -852,7 +852,7 @@
 @media (max-width: 600px) and (max-height: 800px) {              /* Portrait Mode small phones */
   .pokemon1-container {
     left: -16vw !important;
-    top: -15dvh !important;
+    top: -20dvh !important;
   }
   .pokemon2-container {
     left: -12vw !important;
@@ -861,7 +861,7 @@
   .moveset {
     min-height: 200px !important;
     right: 70px !important;
-    bottom: 10dvh !important;
+    top: 10dvh !important;
     gap: 5px !important;
   }
   .moves {
@@ -874,7 +874,7 @@
     min-height: 200px !important;
     height: 150px !important;
     right: 70px !important;
-    top: -10dvh !important;
+    top: 10dvh !important;
   }
   .ui-1 {
     left: -72px !important;
