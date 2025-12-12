@@ -1,3 +1,4 @@
+node_modules/
 node_modules/.vite/deps/_metadata.json
 node_modules/.vite/deps/chunk-M26FQL24.js
 node_modules/.vite/deps/chunk-M26FQL24.js.map
@@ -16,5 +17,6 @@ node_modules/.vite/deps/react-router-dom.js
 node_modules/.vite/deps/react-router-dom.js.map
 node_modules/.vite/deps/react.js
 node_modules/.vite/deps/react.js.map
+node_modules/.package-lock.json
 node_modules/.package-lock.json
 node_modules/.package-lock.json
