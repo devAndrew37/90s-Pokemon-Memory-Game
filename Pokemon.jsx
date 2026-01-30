@@ -12,7 +12,7 @@ const Pokemon = ({ name, url, onClose, theme }) => {
 
  const fetchPokemon = async () => {
   try {
-   const fetchData = await fetch(`https://corsproxy.io/?${encodeURIComponent(url)}`);
+   const fetchData = await fetch(`${url}`);
     if(!fetchData.ok) {
       throw new Error("Pokemon not found");
     }

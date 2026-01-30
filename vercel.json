@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api-pokemon/:path*",
+      "destination": "https://pokedex.mimo.dev*"
+    }
+  ]
+}

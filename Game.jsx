@@ -190,7 +190,7 @@ const showPokemonCard = (e) => {
 };
 
 const playPokeSound = async (id) => {
-  const query = await fetch(`https://corsproxy.io/?${encodeURIComponent("https://pokedex.mimo.dev/api/pokemon/" + id)}`);
+  const query = await fetch(`/api-pokemon/api/pokemon/${id}`);
   const data = await query.json();
   const cryUrlLegacy = data.cries.legacy;
   const cryUrlLatest = data.cries.latest;
