@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api-pokemon/:path*",
-      "destination": "https://pokedex.mimo.dev*"
+      "destination": "https://pokedex.mimo.dev/:path*"
     }
   ]
 }
