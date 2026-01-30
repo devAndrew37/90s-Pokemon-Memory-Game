@@ -643,11 +643,11 @@
     left: 2.5vw;
   }
   .popup-coin h3, .popup-coin p {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
   }
   .coin-options {
     position: relative !important;
-    gap: 500px !important;
+    gap: 450px !important;
     right: 0px;
     top: -10px !important;
     height: 50% !important;
@@ -655,48 +655,66 @@
     z-index: 99999 !important;
   }
   .headtailstitle {
-    font-size: 2.7rem;
+    font-size: 2.4rem;
     line-height: 1.3 !important;
   }
   .coin-result {
     position: relative;
     margin-top: 0.5rem;
     text-align: center;
-    bottom: 160px;
+    bottom: 80px;
   }
   .imgcoin {
-    width: 70px;
+    width: 60px;
   }
   .gifcoin {
-  width: 180px;
+  width: 150px;
+  }
+  .popup-pokemon {
+    position: absolute !important;
+    max-width: 95vw !important;
+    width: 95vw !important;
+    min-width: unset !important;
+    padding: 12px 8px !important;
+    max-height: 200dvh !important;
+    height: 190dvh !important;
+  }
+  .close-button {
+    left: -30px !important;
+    top: 30px !important;
   }
   .game-area {
-    max-width: 1800px !important;
-    position: relative;
-    left: 900px;
+    max-width: 300vw !important;
+    position: relative !important;
+    left: 520px;
   }
   .game-board {
     width: 100% !important;
   }
   .second-player-container, .first-player-container {
-    width: 1800px !important;
+    width: 200vw !important;
+    left: -120px !important;
+    position: relative !important;
   }
   .first-player, .cpu-player, .player2-player {
     position: relative !important;
   }
   .first-player, .player2-player {
-    left: 250px !important;
-    width: 1700px !important;
+    left: 100px !important;
+    width: 160vw !important;
     max-width: 1700px !important;
   }
   .cpu-player {
-    left: 300px !important;
-    width: 1550px !important;
+    left: 140px !important;
+    width: 160vw !important;
     max-width: 1700px !important;
   }
   #first-player-title, #second-player-title, #cpu-title {
     white-space: nowrap;
     left: 150px !important;
+  }
+  #cpu-title {
+    left: 180px !important;
   }
   .first-player-container {
     padding-bottom: 100px !important;
@@ -704,6 +722,9 @@
   .second-player-container {
     padding-top: 50px !important;
   }
+ .turn-indicator.right{
+  padding: 0 120px 0 80px !important;
+ }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) and (min-height: 500px) and (max-height: 1366px) {          /* modo ipad */

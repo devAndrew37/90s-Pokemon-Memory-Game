@@ -176,7 +176,6 @@ useEffect(() => {
 if(!loading) {
   return (
   <>
-  <img src={preloadedImages["/assets/cover.png"].src} alt="cover" id="cover" width="400px" />
     <div id="home">
       {showPopup && (
         <div className="popup-overlay">
@@ -211,6 +210,7 @@ if(!loading) {
       )}
       <br />
       <br />
+      <img src={preloadedImages["/assets/cover.png"].src} alt="cover" id="cover" width="400px" />
       <img src={preloadedImages["/assets/pokegang.gif"].src} alt="the gang" id="gang-home" />
       <h1>Memoria</h1>
       <h2>Pokemon</h2>

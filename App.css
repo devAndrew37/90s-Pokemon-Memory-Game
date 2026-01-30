@@ -255,11 +255,13 @@ p {
 
 #home {
   min-height: 90dvh;
+  height: auto;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative; /* Needed for stacking context */
+  position: relative; 
   z-index: 1;
 }
 
@@ -709,28 +711,32 @@ footer a {
   }
   #cover {
     width: 100vw !important;
-    position: static !important;
-    top: 0 !important;
-    left: 0 !important;
+    position: relative !important;
+    top: -50px !important;
+    left: 5px !important;
   }
   .pokedex {
-    top: 770px !important;
-    left: 65vw !important;
+    top: -65px !important;
+    left: 20vw !important;
     width: 60px !important;
     max-width: 50% !important;
     height: auto !important;
+    position: relative !important;
   }
   .pokedex-gif {
-    top: 740px !important;
-    left: 52vw !important;
+    top: -100px !important;
+    left: 0vw !important;
     width: 160px !important;
     max-width: 200% !important;
     height: auto !important;
+    position: relative !important;
   }
   .pokedex-text {
-    top: 720px !important;
-    left: 50vw !important;
-    font-size: 0.65em !important;
+    top: -260px !important;
+    left: 40vw !important;
+    font-size: 0.6em !important;
+    padding: 8px !important;
+    position: relative !important;
   }
   .figuras {
     font-size: 2.6rem;
@@ -738,9 +744,9 @@ footer a {
   .card-home-wrapper {
     position: relative;
     left: -15vw;
-    top: 0px;
+    top: 40px;
     margin-right: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     margin-top: 50px;
   }
   .card-home {
@@ -872,16 +878,24 @@ footer a {
   font-size: 4rem !important;
   top: 25dvh;
   }
-.loading-gif {
-  width: 15%;
-}
+  .loading-gif {
+    width: 15%;
+  }
   #home {
     z-index: 5 !important;
   }
+  #gang-home {
+    width: 8% !important;
+  }
+  #pikachu-home {
+    position: relative !important;
+    left: 0vw !important;
+    bottom: -7vh;
+  }  
   .pokedex {
     position: relative !important;
-    top: -170px !important;
-    left: 28vw !important;
+    top: -150px !important;
+    left: 30vw !important;
     width: 65px !important;
     max-width: 50% !important;
     height: auto !important;
@@ -889,22 +903,33 @@ footer a {
   .pokedex-gif {
     position: relative !important;
     top: -180px !important;
-    left: 29vw !important;
-    width: 140px !important;
+    left: 18vw !important;
+    width: 170px !important;
     max-width: 50% !important;
     height: auto !important;
   }
+  .pokedex-text {
+    top: -350px !important;
+    left: 40vw !important;
+    font-size: 0.8em !important;
+    padding: 8px !important;
+    position: relative !important;
+  }
   .card-home-wrapper {
     position: relative; 
-    bottom: 20vh; 
-    left: 4dvw; 
+    bottom: 60px; 
+    left: -30vw; 
     padding-right: 5vw;
   }
+  .card-home {
+    width: 80px !important;
+    height: 80px !important;
+  }
   .card-home-wrapper .card {
-    width: 10vw !important;
-    height: 20vh !important;
-    max-width: 80vw !important;
-    max-height: 80vh !important;
+    width: 80px !important;
+    height: 80px !important;
+    max-width: 80px !important;
+    max-height: 80px !important;
   }
   .music-player {
     max-width: 40vw !important;
@@ -913,11 +938,6 @@ footer a {
   .music-info, #volume-button {
     display: none;
   }
-  #pikachu-home {
-    position: relative !important;
-    left: -30vw !important;
-    bottom: 0vh;
-  }  
   .about-container {
     grid-template-areas: 
      "header" 
