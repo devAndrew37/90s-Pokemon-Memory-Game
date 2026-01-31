@@ -273,6 +273,7 @@ useEffect(() => {
 
 return (
   <>
+  <div className="game-container-all">
     {!startFlag && <HeadTails setTurn={setTurn} setStartFlag={setStartFlag} theme={theme} setIsPlaying={setIsPlaying} /> }
     {showPopup && (
       <div className="popup-overlay">
@@ -355,6 +356,7 @@ return (
         ))}
       </div>    
       </div> 
+  </div>
   </>
   );
 };

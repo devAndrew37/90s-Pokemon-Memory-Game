@@ -657,18 +657,18 @@
 @media (max-width: 600px) {              /* Portrait Mode */
   .popup-battle-pokemon {
     width: 100vw !important;
-    min-height: 700px !important;
-    height: 700px !important; 
+    min-height: 750px !important;
+    height: 750px !important; 
   }
   .battle-transition-overlay {
-    min-width: 100vw !important;
     width: 100vw !important;
-    min-height: 85vh !important;
+    min-height: 750px !important;
+    height: 750px !important; 
   }
   .popup-battle-pokemon-animation {
-    min-width: 100vw !important;
     width: 100vw !important;
-    min-height: 85vh !important;
+    min-height: 750px !important;
+    height: 750px !important; 
   }
   .pokemon1-container, .pokemon2-container, .moveset, .moveset-2 {
     width: 95vw !important;
@@ -678,7 +678,7 @@
   }
   .pokemon1-container {
     left: -12vw !important;
-    top: -8vh !important;
+    top: -4dvh !important;
   }
   .pokemon2-container {
     left: -12vw !important;
@@ -686,7 +686,7 @@
   }
   .pokemon1 {
     left: -230px !important;
-    top: 35px !important;    
+    top: 40px !important;    
   }
   .pokemon2 {
     left: 200px !important;
@@ -696,7 +696,7 @@
     min-height: 200px !important;
     height: 200px !important;
     right: 70px !important;
-    bottom: -120px !important;
+    bottom: -160px !important;
     gap: 5px !important;
   }
   .moves {
@@ -709,7 +709,7 @@
     min-height: 200px !important;
     height: 150px !important;
     right: 70px !important;
-    bottom: -120px !important;
+    bottom: -160px !important;
   }
   #battle-message {
     font-size: 30px !important;
@@ -727,7 +727,7 @@
     font-size: 18px !important;
     padding: 0px !important;
     margin-top: 0 !important;
-    width: 90px !important;
+    width: auto !important;
     height: 70px !important;
   }
   .pokemon2-stats, .pokemon1-stats {
@@ -892,6 +892,14 @@
     min-height: 550px !important;
     height: 550px !important; 
   }
+  .battle-transition-overlay {
+    min-height: 550px !important;
+    height: 550px !important; 
+  }
+  .popup-battle-pokemon-animation {
+    min-height: 550px !important;
+    height: 550px !important; 
+  }
   .pokemon1-container {
     left: -16vw !important;
     top: -25dvh !important;
@@ -910,7 +918,7 @@
     min-height: 150px !important;
     height: 150px !important;
     right: 70px !important;
-    top: 3dvh !important;
+    top: 4dvh !important;
     gap: 5px !important;
   }
   .moves {
@@ -923,7 +931,7 @@
     min-height: 150px !important;
     height: 150px !important;
     right: 70px !important;
-    top: 3dvh !important;
+    top: 4dvh !important;
   }
   .battle-menu{
     height: 130px !important;
@@ -938,9 +946,12 @@
   .pkmn-img-icon {
     width: 35px !important;
   }
+  #battle-message {
+    font-size: 25px !important; 
+  }
 }
 
-@media (max-width: 900px) and (max-height: 400px) {          /* modo landscape */
+@media (max-width: 1200px) and (max-height: 500px) {          /* modo landscape */
   .popup-battle-pokemon {
     width: 100vw !important;
     min-height: 100vh !important;
@@ -1010,7 +1021,7 @@
     background-color: transparent !important;
   }
   .pokemon1-container {
-    bottom: 35vh !important;
+    bottom: 45vh !important;
     position: relative !important;
     right: 5vw !important;
   }
@@ -1023,30 +1034,32 @@
     left: 150px !important;
   }
   .pokemon1 {
-    left: -250px !important;
+    left: -240px !important;
   }
   .moveset {
-    bottom: 58vh !important;
+    bottom: 70vh !important;
     position: relative !important;
     width: 83vw !important;
     height: 200px !important;
+    min-height: 150px !important;
   }
   .moves {
     font-size: 20px !important;
     padding: 0px !important;
     margin-top: 0 !important;
     width: 39vw !important;
-    height: 95px !important;
+    height: 70px !important;
   }
   .moveset-2 {
-    bottom: 58vh !important;
+    bottom: 70vh !important;
     position: relative !important;
     width: 83vw !important;
     height: 200px !important;
+    min-height: 150px !important;
   }
   .battle-menu{
     width: 40vw !important;
-    height: 220px !important;
+    height: 180px !important;
     position: relative !important;
     gap: 5px !important;
     right: -5px !important;
@@ -1057,7 +1070,7 @@
     padding: 0px !important;
     margin-top: 0 !important;
     width: 18vw !important;
-    height: 85px !important;
+    height: 70px !important;
 }
 }
 
