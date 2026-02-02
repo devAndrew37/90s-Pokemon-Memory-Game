@@ -520,7 +520,7 @@
   align-items: center;
   min-width: 350px;
   position: relative;
-
+  right: 100px;
 }
 
 .pokemon-header {
@@ -876,7 +876,10 @@
     width: 45px !important;
   }
   .lose-icon-short, .win-icon-short {
-    width: 20% !important;
+    width: 40px !important;
+    height: 40px !important;
+    position: relative !important;
+    top: 25px !important;
   }
   .pkmn-battled p {
     font-size: 32px !important;
@@ -1002,9 +1005,6 @@
   }
   .pkmn-img {
     width: 160px !important;
-  }
-  .lose-icon-short, .win-icon-short {
-    width: 20% !important;
   }
   .pkmn-battled p {
     font-size: 45px !important;

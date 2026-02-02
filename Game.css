@@ -125,12 +125,12 @@
   position: relative;
   right: 45px;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 29px;
   height: 90px;
   border-radius: 12px;
   padding: 10px 16px;
   margin: 10px auto 20px 80px;
-  width: 80vw;
+  width: 79vw;
   box-shadow: 0 2px 8px #0002;
   justify-content: center;
   align-items: center;
@@ -142,12 +142,12 @@
 .cpu-player {
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 29px;
   height: 90px;
   border-radius: 12px;
   padding: 20px 16px;
   margin: 10px auto 20px 110px;
-  width: 81vw;
+  width: 80vw;
   box-shadow: 0 2px 8px #0002;
   justify-content: center;
   align-items: center;
@@ -159,12 +159,12 @@
 .player2-player {
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 29px;
   height: 90px;
   border-radius: 12px;
   padding: 20px 16px;
   margin: 10px auto 20px 80px;
-  width: 80vw;
+  width: 79vw;
   box-shadow: 0 2px 8px #0002;
   justify-content: center;
   align-items: center;
@@ -952,7 +952,7 @@ button.theme-squirtle {
 .player2-player.theme-mewtwo,
 .cpu-player.theme-mewtwo,
 button.theme-mewtwo {
-  background-color: #191622;
+  background-color: #837b9c;
 }
 
 .popup.theme-mewtwo,
@@ -961,7 +961,7 @@ button.theme-mewtwo {
 }
 
 .empty-card.theme-mewtwo {
-  background-color: #d7cae4;
+  background-color: #d1c0e0;
 }
 
 /*themes---------------------------*/

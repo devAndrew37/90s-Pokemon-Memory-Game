@@ -189,7 +189,7 @@ if(!loading) {
             <br />
             <br />
             <h2 className='help-h2'>Battle Mode</h2>
-            <p className='help-p'>It's a memory game but with a twist: </p>
+            <p className='help-p'>It's a memory game with a twist: </p>
             <p className='help-p'>Gameboy battles as we remember from back in the 90s!</p>
             <img src={preloadedImages["/assets/battle.gif"].src} className='help-gif' alt="battle mode" />
             <br />
@@ -224,7 +224,7 @@ if(!loading) {
       </div>
       <div className="tooltip-container">
       <button onClick={() => handleBattleMode(true)} className={`${theme}`}>Battle Mode!</button>
-      <span className={`${theme} tooltip-text right`}>Play in Battle Mode, it's a memory game but with a twist: Gameboy battles as we remember from back in the 90s!</span>
+      <span className={`${theme} tooltip-text right`}>Play in Battle Mode, it's a memory game with a twist: Gameboy battles as we remember from back in the 90s!</span>
       </div>
       </div>)}  
       {(start && modeFlag && !cpuMode && !battleMode) && (<div style={{ display: "flex", gap: "1rem" }}>
