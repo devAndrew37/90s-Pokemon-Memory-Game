@@ -430,6 +430,10 @@ button:hover {
   background-color: #eebb09;
 }
 
+.close-button:hover {
+  background-color: transparent;
+}
+
 #hardButton {
   background-color: #ee1109ff;
 }
