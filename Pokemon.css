@@ -905,7 +905,7 @@
   }
   .pokemon1-container {
     left: -16vw !important;
-    top: -22dvh !important;
+    top: -24dvh !important;
   }
   .pokemon2-container {
     left: -12vw !important;
@@ -943,8 +943,8 @@
     font-size: 15px !important;
     padding: 0px !important;
     margin-top: 0 !important;
-    width: auto !important;
-    height: 50px !important;
+    width: 90px !important;
+    height: 55px !important;
   }
   .pkmn-img-icon {
     width: 35px !important;
