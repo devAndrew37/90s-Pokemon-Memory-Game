@@ -678,7 +678,7 @@
   }
   .pokemon1-container {
     left: -12vw !important;
-    top: -2dvh !important;
+    top: -4dvh !important;
   }
   .pokemon2-container {
     left: -12vw !important;
@@ -727,7 +727,7 @@
     font-size: 18px !important;
     padding: 0px !important;
     margin-top: 0 !important;
-    width: 8vw !important;
+    width: auto !important;
     height: 70px !important;
   }
   .pokemon2-stats, .pokemon1-stats {
@@ -745,7 +745,7 @@
   }
   .pokeName-battle {
     top: 150px !important;
-    left: 120px !important;
+    left: 100px !important;
   }
   .pokeName-battle-2 {
     top: 50px !important;
@@ -905,7 +905,7 @@
   }
   .pokemon1-container {
     left: -16vw !important;
-    top: -25dvh !important;
+    top: -20dvh !important;
   }
   .pokemon2-container {
     left: -12vw !important;
