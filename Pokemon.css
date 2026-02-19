@@ -367,7 +367,7 @@
 }
 
 .pokemon1-container {
-  bottom: 50px;
+  bottom: 20px;
   position: relative;
 }
 
@@ -745,7 +745,7 @@
   }
   .pokeName-battle {
     top: 150px !important;
-    left: 100px !important;
+    left: 120px !important;
   }
   .pokeName-battle-2 {
     top: 50px !important;
@@ -943,8 +943,8 @@
     font-size: 15px !important;
     padding: 0px !important;
     margin-top: 0 !important;
-    width: 80px !important;
-    height: 50px !important;
+    width: 90px !important;
+    height: 55px !important;
   }
   .pkmn-img-icon {
     width: 35px !important;
