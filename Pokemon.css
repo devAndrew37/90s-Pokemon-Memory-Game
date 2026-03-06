@@ -846,7 +846,7 @@
   .popup-pokemon-2 {
     padding: 0px !important;
     min-width: 95vw !important;
-    max-height: 85vh !important;
+    max-height: 560px !important;
   }
   .all-pokemon-container {
     gap: 50px !important;
@@ -871,6 +871,9 @@
   }
   .pokemon-h2, .pokemon-h2-2 {
     font-size: 35px !important;
+  }
+  .pkmn-img {
+    width: 110px !important;
   }
   .pkmn-img-icon {
     width: 45px !important;
